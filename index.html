@@ -6,6 +6,9 @@
     <head>
         <title>jQuery Toggle Fields</title>
         <meta charset="utf-8">
+        <link rel="stylesheet" media="screen" href="gh-pages/css/normalize.css">
+        <link rel="stylesheet" media="screen" href="gh-pages/css/styles.css">
+        <link rel="stylesheet" media="screen" href="gh-pages/css/demo.css">
         <style>
             .disabled {
                 opacity: 0.3;
@@ -14,7 +17,9 @@
     </head>
 
     <body data-toggle-conditions="#id_walking_in_memory_of_someone_1">
-
+        <div class="header">
+            <p><a href="http://nomensa.com?plugin"><img src="gh-pages/img/nomensa-logo.png" alt="Nomensa humanising technology" width="135" heaight="38"></a></p>
+        </div>
         <div class="main" role="main">
             <h1>jQuery Toggle Fields</h1>
             <p>Adds conditions to show and hide form fields when they are filled out.</p>
@@ -26,7 +31,7 @@
                     <legend for="id_walking_in_memory_of_someone">Are you walking in memory of someone?</legend>
                     <label for="id_walking_in_memory_of_someone_0"><input aria-required="true" checked="checked" id="id_walking_in_memory_of_someone_0" name="walking_in_memory_of_someone" type="radio" value="False"> No</label></li>
                     <label for="id_walking_in_memory_of_someone_1"><input aria-required="true" id="id_walking_in_memory_of_someone_1" name="walking_in_memory_of_someone" type="radio" value="True"> Yes</label></li>
-                </div>
+                </fieldset>
                 <div data-toggle-next="" data-toggle-ref="id_walking_in_memory_of_someone_1">
                     <div>
                         <label data-toggle-target="" for="id_in_memory_of_relation">Relationship to you?</label>
@@ -38,10 +43,10 @@
                     </div>
                 </div>
                 <div data-toggle-next="" data-toggle-ref="id_walking_in_memory_of_someone_1">
-                    <div class="col-tl-2 col-d-3">
+                    <div class="">
                         <label data-toggle-target="" for="id_in_memory_of_name">If you would like to provide their name, please do so here:</label>
                     </div>
-                    <div class="col-tl-3 col-d-9 col-d-last">
+                    <div class="">
                         <input data-toggle-target="" id="id_in_memory_of_name" type="text">
                     </div>
                 </div>
