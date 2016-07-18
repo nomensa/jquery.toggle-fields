@@ -8,16 +8,30 @@
 */
 'use strict';
 
-var conditionsIdentifier = 'data-toggle-conditions',
+var pluginName = 'toggleFields',
+    defaults,
+    counter = 0,
+    conditionsIdentifier = 'data-toggle-conditions',
     conditions = $('[' + conditionsIdentifier + ']'),
-    helpTextIdentifier = 'form-row__instructions';
+    helpTextIdentifier = 'form-row__instructions',
+    defaults = {
+        initCallback: function() {},
+        destroyCallback: function() {}
+    },
+    disabledClass = 'disabled',
+    disabledAttr = 'disabled';
 
-/*
- * Performs the bulk toggling functionality
- */
-function toggleFields() {
+function toggleFields(options) {
+    /*
+        Constructor function for the toggle fields plugin
+    */
+    var options = $.extend({}, defaults, options);
+
     if (conditions.length !== 0) {
         var conditionTargets = $(conditions.attr(conditionsIdentifier));
+
+        // Init callback
+        options.initCallback();
 
         // For each condition
         conditionTargets.each(function() {
@@ -42,7 +56,7 @@ function toggleFields() {
             targets = targets.find('[data-toggle-target], .' + helpTextIdentifier);
 
             // Init toggle
-            applyToggle(condition, targets);
+            toggleFields__applyToggle(condition, targets);
 
             // If the condition is an option in a select box
             if (condition.is('option')) {
@@ -58,10 +72,11 @@ function toggleFields() {
                 // Otherwise the field should be the element with the condition identifier
                 fieldToWatch = condition;
             }
+
             // Target the on change
             fieldToWatch.on('change', function() {
                 // Update toggle
-                applyToggle(condition, targets);
+                toggleFields__applyToggle(condition, targets);
             });
         });
     }
@@ -70,10 +85,7 @@ function toggleFields() {
 /*
  * Handles the disabled and enabled states
  */
-function applyToggle(condition, targets) {
-    var disabledClass = 'disabled',
-        disabledAttr = 'disabled';
-
+function toggleFields__applyToggle(condition, targets) {
     condition = $(condition);
     targets = $(targets);
 
@@ -88,9 +100,9 @@ function applyToggle(condition, targets) {
                 // Remove the disabled class
                 target.removeClass(disabledClass);
             }
-            // if the target is an input field
+            // If the target is an input field
             else if (target.is('input') || target.is('select')) {
-                // Remove the disable attribute
+                // Remove the disable state
                 target.removeAttr(disabledAttr);
                 target.removeClass(disabledClass);
             }
@@ -102,9 +114,9 @@ function applyToggle(condition, targets) {
                     // Add a disabled class
                     target.addClass(disabledClass);
                 }
-                // if the target is an input field
+                // If the target is an input field
                 else if (target.is('input') || target.is('select')) {
-                    // Add a disabled attribute
+                    // Add a disabled state
                     target.attr(disabledAttr, disabledAttr);
                     target.addClass(disabledClass);
                 }
@@ -112,3 +124,32 @@ function applyToggle(condition, targets) {
         }
     });
 }
+
+/*
+ * Removes reference of the condition
+ */
+function toggleFields__destroy(conditions) {
+
+    conditions.each(function() {
+        var condition = $(this),
+            targets = condition.find('[data-toggle-target], .' + helpTextIdentifier);
+
+        // Destroy callback
+        options.destroyCallback();
+
+        // Remove the disable state
+        targets.removeAttr(disabledAttr);
+        targets.removeClass(disabledClass);
+    });
+}
+
+$.fn[pluginName] = function (options) {
+/*
+    Guards against multiple instantiations
+*/
+    return this.each(function () {
+        if (!$.data(this, 'plugin_' + pluginName)) {
+            $.data(this, 'plugin_' + pluginName, new ShowHide(this, options));
+        }
+    });
+};
