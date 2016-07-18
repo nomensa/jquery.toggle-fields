@@ -31,12 +31,13 @@ function toggleFields() {
             // If specified next form row
             if (nextFormRows.length !== 0) {
                 // Only match next rows for the condition
-                nextFormRows.filter('[' + nextRowReferenceIdentifier + '="' + condition.attr('id') + '"]');
+                nextFormRows = nextFormRows.filter('[' + nextRowReferenceIdentifier + '="' + condition.attr('id') + '"]');
                 targets = nextFormRows;
             } else {
                 // Otherwise we assume the target is the next form row
                 targets = condition.parents('.form-row').next();
             }
+
             // Get all input fields and labels from the row
             targets = targets.find('[data-toggle-target], .' + helpTextIdentifier);
 

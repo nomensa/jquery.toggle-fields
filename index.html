@@ -11,7 +11,7 @@
         <link rel="stylesheet" media="screen" href="gh-pages/css/demo.css">
     </head>
 
-    <body data-toggle-conditions="#demo_field_2">
+    <body data-toggle-conditions="#demo_example_a_field_1_option, #demo_example_b_field_2">
         <div class="header">
             <p><a href="http://nomensa.com?plugin"><img src="gh-pages/img/nomensa-logo.png" alt="Nomensa humanising technology" width="135" heaight="38"></a></p>
         </div>
@@ -20,30 +20,54 @@
             <p>Adds form conditions to show and hide form fields.</p>
 
             <h2 class="heading">Example A</h2>
-            <p>Toggling multiple fields at a time</p>
+            <p>Toggling a single field</p>
 
-            <form class="example-a">
+            <form class="example-b">
                 <fieldset class="form-row">
-                    <legend>Selecting 'Yes' will enable the fields.</legend>
-                    <label for="demo_field_1"><input checked="checked" id="demo_field_1" name="demo_fieldset_1" type="radio"> No</label></li>
-                    <label for="demo_field_2"><input id="demo_field_2" name="demo_fieldset_1" type="radio"> Yes</label></li>
+                    <legend>Selecting 'foo' from the select box will enable the field.</legend>
+                    <label for="demo_example_a_field_1">Select an option</label>
+                    <select id="demo_example_a_field_1" data-toggle-target>
+                        <option>---------</option>
+                        <option id="demo_example_a_field_1_option">foo</option>
+                    </select>
                 </fieldset>
-                <div data-toggle-next data-toggle-ref="demo_field_2">
+                <div data-toggle-next data-toggle-ref="demo_example_a_field_1_option">
                     <div class="form-row">
-                        <label data-toggle-target="" for="demo_field_3">An additional field</label>
+                        <label data-toggle-target for="demo_example_a_field_2">An additional field</label>
                     </div>
                     <div class="form-row">
-                        <select id="demo_field_3" data-toggle-target>
+                        <select id="demo_example_a_field_2" data-toggle-target>
                             <option>---------</option>
                         </select>
                     </div>
                 </div>
-                <div data-toggle-next data-toggle-ref="demo_field_2">
+            </form>
+
+            <h2 class="heading">Example B</h2>
+            <p>Toggling multiple fields at a time</p>
+
+            <form class="example-b">
+                <fieldset class="form-row">
+                    <legend>Selecting 'Yes' will enable the fields.</legend>
+                    <label for="demo_example_b_field_1"><input checked="checked" id="demo_example_b_field_1" name="demo_fieldset_1" type="radio"> No</label>
+                    <label for="demo_example_b_field_2"><input id="demo_example_b_field_2" name="demo_fieldset_1" type="radio"> Yes</label>
+                </fieldset>
+                <div data-toggle-next data-toggle-ref="demo_example_b_field_2">
                     <div class="form-row">
-                        <label data-toggle-target for="demo_field_4">Another additional field</label>
+                        <label data-toggle-target for="demo_example_b_field_3">An additional field</label>
                     </div>
                     <div class="form-row">
-                        <input data-toggle-target id="demo_field_4" type="text">
+                        <select id="demo_example_b_field_3" data-toggle-target>
+                            <option>---------</option>
+                        </select>
+                    </div>
+                </div>
+                <div data-toggle-next data-toggle-ref="demo_example_b_field_2">
+                    <div class="form-row">
+                        <label data-toggle-target for="demo_example_b_field_4">Another additional field</label>
+                    </div>
+                    <div class="form-row">
+                        <input data-toggle-target id="demo_example_b_field_4" type="text">
                     </div>
                 </div>
             </form>
