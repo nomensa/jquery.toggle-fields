@@ -1,2 +1,17 @@
 /* DEMO STYLES
 ------------------------------------------------------------------------------*/
+.form-row {
+    margin-bottom: 1em;
+}
+
+fieldset label {
+    margin-right: 1em;
+}
+
+.heading {
+    margin-bottom: 14px;
+}
+
+.disabled {
+    opacity: 0.3;
+}

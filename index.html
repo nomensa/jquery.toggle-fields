@@ -9,14 +9,9 @@
         <link rel="stylesheet" media="screen" href="gh-pages/css/normalize.css">
         <link rel="stylesheet" media="screen" href="gh-pages/css/styles.css">
         <link rel="stylesheet" media="screen" href="gh-pages/css/demo.css">
-        <style>
-            .disabled {
-                opacity: 0.3;
-            }
-        </style>
     </head>
 
-    <body data-toggle-conditions="#id_walking_in_memory_of_someone_1">
+    <body data-toggle-conditions="#demo_field_2">
         <div class="header">
             <p><a href="http://nomensa.com?plugin"><img src="gh-pages/img/nomensa-logo.png" alt="Nomensa humanising technology" width="135" heaight="38"></a></p>
         </div>
@@ -24,30 +19,31 @@
             <h1>jQuery Toggle Fields</h1>
             <p>Adds conditions to show and hide form fields when they are filled out.</p>
 
-            <h2>Example A</h2>
+            <h2 class="heading">Example A</h2>
+            <p>Toggling multiple fields at a time</p>
 
             <form class="example-a">
-                <fieldset>
-                    <legend for="id_walking_in_memory_of_someone">Are you walking in memory of someone?</legend>
-                    <label for="id_walking_in_memory_of_someone_0"><input aria-required="true" checked="checked" id="id_walking_in_memory_of_someone_0" name="walking_in_memory_of_someone" type="radio" value="False"> No</label></li>
-                    <label for="id_walking_in_memory_of_someone_1"><input aria-required="true" id="id_walking_in_memory_of_someone_1" name="walking_in_memory_of_someone" type="radio" value="True"> Yes</label></li>
+                <fieldset class="form-row">
+                    <legend>Selecting 'Yes' will enable the fields.</legend>
+                    <label for="demo_field_1"><input checked="checked" id="demo_field_1" name="demo_fieldset_1" type="radio"> No</label></li>
+                    <label for="demo_field_2"><input id="demo_field_2" name="demo_fieldset_1" type="radio"> Yes</label></li>
                 </fieldset>
-                <div data-toggle-next="" data-toggle-ref="id_walking_in_memory_of_someone_1">
-                    <div>
-                        <label data-toggle-target="" for="id_in_memory_of_relation">Relationship to you?</label>
+                <div data-toggle-next data-toggle-ref="demo_field_2">
+                    <div class="form-row">
+                        <label data-toggle-target="" for="demo_field_3">An additional field</label>
                     </div>
-                    <div>
-                        <select id="id_in_memory_of_relation" name="in_memory_of_relation" data-toggle-target="">
-                            <option value="" selected="selected">---------</option>
+                    <div class="form-row">
+                        <select id="demo_field_3" data-toggle-target>
+                            <option>---------</option>
                         </select>
                     </div>
                 </div>
-                <div data-toggle-next="" data-toggle-ref="id_walking_in_memory_of_someone_1">
-                    <div class="">
-                        <label data-toggle-target="" for="id_in_memory_of_name">If you would like to provide their name, please do so here:</label>
+                <div data-toggle-next data-toggle-ref="demo_field_2">
+                    <div class="form-row">
+                        <label data-toggle-target for="demo_field_4">Another additional field</label>
                     </div>
-                    <div class="">
-                        <input data-toggle-target="" id="id_in_memory_of_name" type="text">
+                    <div class="form-row">
+                        <input data-toggle-target id="demo_field_4" type="text">
                     </div>
                 </div>
             </form>
