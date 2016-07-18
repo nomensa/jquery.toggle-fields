@@ -2,64 +2,22 @@
  * Toggles an disabled or enabled state on form fields
  *
  * Requires the following DOM attributes:
- * * [data-toggle-conditions="#field-1-with-condition, #field-2-with-condition"] - Required: List of condition IDs, comma separated.
+ * * [data-toggle-conditions="#field-1-with-condition, #field-2-with-condition"] - Required: List of condition IDs, prepended with a hash, comma separated.
  * * [data-toggle-target] - Required: The form field to toggle.
  * * [data-toggle-next] - Optional: The next form row to toggle
 */
+'use strict';
+
+var conditionsIdentifier = 'data-toggle-conditions',
+    conditions = $('[' + conditionsIdentifier + ']'),
+    helpTextIdentifier = 'form-row__instructions';
+
+/*
+ * Performs the bulk toggling functionality
+ */
 function toggleFields() {
-    'use strict';
-
-    var conditionsIdentifier = 'data-toggle-conditions',
-        conditions = $('[' + conditionsIdentifier + ']'),
-        helpTextIdentifier = 'form-row__instructions';
-
     if (conditions.length !== 0) {
-        var applyToggle = function(condition, targets) {
-            var disabledClass = 'disabled',
-                disabledAttr = 'disabled';
-
-            condition = $(condition);
-            targets = $(targets);
-
-            // Initially disable all targets
-            targets.each(function() {
-                var target = $(this);
-
-                // If the condition has been selected
-                if (condition.is(':selected') || condition.is(':checked')) {
-                    // Enabled the targets
-                    if (target.is('label') || target.is('.' + helpTextIdentifier)) {
-                        // Remove the disabled class
-                        target.removeClass(disabledClass);
-                    }
-                    // if the target is an input field
-                    else if (target.is('input') || target.is('select')) {
-                        // Remove the disable attribute
-                        target.removeAttr(disabledAttr);
-                        target.removeClass(disabledClass);
-                    }
-                } else {
-                    // Disable the targets if they have not already been disabled
-                    if (!target.attr(disabledAttr) || !target.hasClass(disabledClass)) {
-                        // If the target is a label
-                        if (target.is('label') || target.is('.' + helpTextIdentifier)) {
-                            // Add a disabled class
-                            target.addClass(disabledClass);
-                        }
-                        // if the target is an input field
-                        else if (target.is('input') || target.is('select')) {
-                            // Add a disabled attribute
-                            target.attr(disabledAttr, disabledAttr);
-                            target.addClass(disabledClass);
-                        }
-                    }
-                }
-            });
-        },
-        conditionTargets;
-
-        // Get all of the conditions from the attribute
-        conditionTargets = $(conditions.attr(conditionsIdentifier));
+        var conditionTargets = $(conditions.attr(conditionsIdentifier));
 
         // For each condition
         conditionTargets.each(function() {
@@ -85,7 +43,7 @@ function toggleFields() {
             // Init toggle
             applyToggle(condition, targets);
 
-            // if the condition is an option in a select box
+            // If the condition is an option in a select box
             if (condition.is('option')) {
                 // The field to watch is the select box
                 fieldToWatch = condition.parents('select');
@@ -106,4 +64,50 @@ function toggleFields() {
             });
         });
     }
+}
+
+/*
+ * Handles the disabled and enabled states
+ */
+function applyToggle(condition, targets) {
+    var disabledClass = 'disabled',
+        disabledAttr = 'disabled';
+
+    condition = $(condition);
+    targets = $(targets);
+
+    // Initially disable all targets
+    targets.each(function() {
+        var target = $(this);
+
+        // If the condition has been selected
+        if (condition.is(':selected') || condition.is(':checked')) {
+            // Enabled the targets
+            if (target.is('label') || target.is('.' + helpTextIdentifier)) {
+                // Remove the disabled class
+                target.removeClass(disabledClass);
+            }
+            // if the target is an input field
+            else if (target.is('input') || target.is('select')) {
+                // Remove the disable attribute
+                target.removeAttr(disabledAttr);
+                target.removeClass(disabledClass);
+            }
+        } else {
+            // Disable the targets if they have not already been disabled
+            if (!target.attr(disabledAttr) || !target.hasClass(disabledClass)) {
+                // If the target is a label
+                if (target.is('label') || target.is('.' + helpTextIdentifier)) {
+                    // Add a disabled class
+                    target.addClass(disabledClass);
+                }
+                // if the target is an input field
+                else if (target.is('input') || target.is('select')) {
+                    // Add a disabled attribute
+                    target.attr(disabledAttr, disabledAttr);
+                    target.addClass(disabledClass);
+                }
+            }
+        }
+    });
 }
