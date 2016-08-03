@@ -5,6 +5,7 @@
  * * [data-toggle-conditions="#field-1-with-condition, #field-2-with-condition"] - Required: List of condition IDs, prepended with a hash, comma separated.
  * * [data-toggle-target] - Required: The form field to toggle.
  * * [data-toggle-next] - Optional: The next form row to toggle
+ * * [data-toggle-ref="#field-1-with-condition"] - Required if using 'data-toggle-next': Identifies which condition it relates to
 */
 'use strict';
 
@@ -49,7 +50,7 @@ function toggleFields(options) {
                 targets = nextFormRows;
             } else {
                 // Otherwise we assume the target is the next form row
-                targets = condition.parents('.form-row').next();
+                targets = condition.parents().next();
             }
 
             // Get all input fields and labels from the row
