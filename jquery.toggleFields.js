@@ -15,9 +15,13 @@ var pluginName = 'toggleFields',
     conditionsIdentifier = 'data-toggle-conditions',
     conditions = $('[' + conditionsIdentifier + ']'),
     helpTextIdentifier = 'form-row__instructions',
+    nextFormRowsIdentifier = '[data-toggle-next]',
     defaults = {
-        initCallback: function() {},
-        destroyCallback: function() {}
+        initCallback: function initCallback() {},
+        destroyCallback: function destroyCallback() {},
+        toggleClass: 'js-toggleFields--on',
+        toggleOnCallback: function toggleOnCallback() {},
+        toggleOffCallback: function toggleOffCallback() {}
     },
     disabledClass = 'disabled',
     disabledAttr = 'disabled';
@@ -29,7 +33,8 @@ function toggleFields(options) {
     var options = $.extend({}, defaults, options);
 
     if (conditions.length !== 0) {
-        var conditionTargets = $(conditions.attr(conditionsIdentifier));
+        var conditionValues = conditions.attr(conditionsIdentifier),
+            conditionTargets = $(conditionValues);
 
         // Init callback
         options.initCallback();
@@ -37,24 +42,32 @@ function toggleFields(options) {
         // For each condition
         conditionTargets.each(function() {
             var condition = $(this),
-                targets,
                 fieldToWatch,
+                nextFormRows = $(nextFormRowsIdentifier),
+                nextRowReferenceIdentifier = 'data-toggle-ref',
                 radioNameIdentifier,
-                nextFormRows = $('[data-toggle-next]'),
-                nextRowReferenceIdentifier = 'data-toggle-ref';
+                targets,
+                wrapper = condition.parents('form');
 
             // If specified next form row
             if (nextFormRows.length !== 0) {
                 // Only match next rows for the condition
                 nextFormRows = nextFormRows.filter('[' + nextRowReferenceIdentifier + '="' + condition.attr('id') + '"]');
-                targets = nextFormRows;
             } else {
                 // Otherwise we assume the target is the next form row
-                targets = condition.parents().next();
+                nextFormRows = condition.parents().next();
+                // Add the nextFormRowsIdentifier
+                nextFormRows.attr(nextFormRowsIdentifier, '');
             }
 
-            // Get all input fields and labels from the row
-            targets = targets.find('[data-toggle-target], .' + helpTextIdentifier);
+            // Get all target fields from the row
+            targets = nextFormRows.find('[data-toggle-target], .' + helpTextIdentifier);
+
+            // If there are no form fields
+            if (targets.length === 0) {
+                // Set the targets to be the nextFormRow containers
+                targets = nextFormRows;
+            }
 
             // Init toggle
             toggleFields__applyToggle(condition, targets);
@@ -68,7 +81,7 @@ function toggleFields(options) {
             else if (condition.is(':radio')) {
                 radioNameIdentifier = condition.attr('name');
                 // The field to watch needs to be aware of the group of radio buttons
-                fieldToWatch = $('[name^="' + radioNameIdentifier + '"]');
+                fieldToWatch = condition.parents().find('[name^="' + radioNameIdentifier + '"]');
             } else {
                 // Otherwise the field should be the element with the condition identifier
                 fieldToWatch = condition;
@@ -87,70 +100,45 @@ function toggleFields(options) {
  * Handles the disabled and enabled states
  */
 function toggleFields__applyToggle(condition, targets) {
+    var options = $.extend({}, defaults, options);
+
     condition = $(condition);
     targets = $(targets);
 
     // Initially disable all targets
     targets.each(function() {
-        var target = $(this);
+        var target = $(this),
+            container = target.parents(nextFormRowsIdentifier);
 
         // If the condition has been selected
         if (condition.is(':selected') || condition.is(':checked')) {
-            // Enabled the targets
-            if (target.is('label') || target.is('.' + helpTextIdentifier)) {
-                // Remove the disabled class
-                target.removeClass(disabledClass);
-            }
             // If the target is an input field
-            else if (target.is('input') || target.is('select')) {
+            if (target.is('input') || target.is('select')) {
                 // Remove the disable state
                 target.removeAttr(disabledAttr);
-                target.removeClass(disabledClass);
             }
+            // Remove the disabled class to the target
+            target.removeClass(disabledClass);
+            // Remove toggle class to the container
+            container.removeClass(options.toggleClass);
+            // Call the toggleOffCallback
+            options.toggleOffCallback();
         } else {
             // Disable the targets if they have not already been disabled
             if (!target.attr(disabledAttr) || !target.hasClass(disabledClass)) {
-                // If the target is a label
-                if (target.is('label') || target.is('.' + helpTextIdentifier)) {
-                    // Add a disabled class
-                    target.addClass(disabledClass);
-                }
                 // If the target is an input field
-                else if (target.is('input') || target.is('select')) {
+                if (target.is('input') || target.is('select')) {
                     // Add a disabled state
                     target.attr(disabledAttr, disabledAttr);
-                    target.addClass(disabledClass);
                 }
+                // Add a disabled class
+                target.addClass(disabledClass);
             }
+
+            // Apply toggle class to the container
+            container.addClass(options.toggleClass);
+            // Call the toggleOnCallback
+            options.toggleOnCallback();
         }
     });
 }
-
-/*
- * Removes reference of the condition
- */
-function toggleFields__destroy(conditions) {
-
-    conditions.each(function() {
-        var condition = $(this),
-            targets = condition.find('[data-toggle-target], .' + helpTextIdentifier);
-
-        // Destroy callback
-        options.destroyCallback();
-
-        // Remove the disable state
-        targets.removeAttr(disabledAttr);
-        targets.removeClass(disabledClass);
-    });
-}
-
-$.fn[pluginName] = function (options) {
-/*
-    Guards against multiple instantiations
-*/
-    return this.each(function () {
-        if (!$.data(this, 'plugin_' + pluginName)) {
-            $.data(this, 'plugin_' + pluginName, new ShowHide(this, options));
-        }
-    });
-};

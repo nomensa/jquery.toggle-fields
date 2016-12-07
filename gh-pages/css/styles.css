@@ -224,10 +224,14 @@ pre {
     line-height: 1.4;
     color: #333;
     background-color: #f7f7f9;
-    border: 1px solid #e1e1e8;
     border-radius: 4px;
     word-break: break-all;
     word-wrap: break-word;
+}
+
+/* Override Google prettyprint */
+html pre.prettyprint {
+    border: 1px solid #e1e1e8;
 }
 
 pre code {

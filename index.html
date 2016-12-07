@@ -11,70 +11,181 @@
         <link rel="stylesheet" media="screen" href="gh-pages/css/demo.css">
     </head>
 
-    <body data-toggle-conditions="#demo_example_a_field_1_option, #demo_example_b_field_2">
+    <body data-toggle-conditions="#demo_example_field_1, #demo_example_field_2, #demo_example_field_3, #demo_example_field_4, #demo_example_field_5">
         <div class="header">
             <p><a href="http://nomensa.com?plugin"><img src="gh-pages/img/nomensa-logo.png" alt="Nomensa humanising technology" width="135" heaight="38"></a></p>
         </div>
         <div class="main" role="main">
             <h1>jQuery Toggle Fields</h1>
-            <p>Adds form conditions to show and hide form fields.</p>
-            <h3>Initialisation</h3>
+            <p>Adds form logic to hide form fields.</p>
+
+            <h2> HTML markup </h2>
+            <table>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Value</th>
+                    <th>Explanation</th>
+                    <th>Required</th>
+                </tr>
+                <tr>
+                    <td>data-toggle-conditions</td>
+                    <td>#field-1-with-condition, #field-2-with-condition</td>
+                    <td>A condition is a form field that triggers the toggle. This represents a jQuery selector string. Multiple conditions must be separated with a comma and space.</td>
+                    <td>Required</td>
+                </tr>
+                <tr>
+                    <td>data-toggle-target</td>
+                    <td>None</td>
+                    <td>The target form field that is going to be toggled</td>
+                    <td>Required</td>
+                </tr>
+                <tr>
+                    <td>data-toggle-next</td>
+                    <td>None</td>
+                    <td>Used to identify the next group of form fields. If not provided the direct sibling will be assumed.</td>
+                    <td>Optional</td>
+                </tr>
+                <tr>
+                    <td>data-toggle-ref</td>
+                    <td>#field-1-with-condition</td>
+                    <td>The condition used in the 'data-toggle-conditions' attribute. Used to associate the next group of form fields with its condition.</td>
+                    <td>Required if using 'data-toggle-next'</td>
+                </tr>
+            </table>
+
+            <h2>Options</h2>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Default</th>
+                    <th>Explanation</th>
+                </tr>
+                <tr>
+                    <td>initCallback</td>
+                    <td>function() {}</td>
+                    <td>Callback when initialised</td>
+                </tr>
+                <tr>
+                    <td>toggleClass</td>
+                    <td>js-toggleFields--on</td>
+                    <td>Class to represent toggled state, used on the target container</td>
+                </tr>
+                <tr>
+                    <td>toggleOnCallback</td>
+                    <td>function() {}</td>
+                    <td>Callback when toggled on</td>
+                </tr>
+                <tr>
+                    <td>toggleOffCallback</td>
+                    <td>function() {}</td>
+                    <td>Callback when toggled off</td>
+                </tr>
+            </table>
+
+            <h2> Init </h2>
 <pre>
-    <code data-language="javascript">
-    toggleFields();
+    <code data-language="javascript">toggleFields();
     </code>
 </pre>
 
-            <h2 class="heading">Example A</h2>
+            <h2>Example A</h2>
             <p>Toggling a single field</p>
 
-            <form class="example-a">
-                <fieldset class="form-row">
-                    <legend>Selecting 'foo' from the select box will enable the field.</legend>
-                    <label for="demo_example_a_field_1">Select an option</label>
-                    <select id="demo_example_a_field_1" data-toggle-target>
+            <h3>Example A Markup </h3>
+<pre class="prettyprint">
+&lt;body data-toggle-conditions="#demo_example_field_1"&gt;
+    &lt;label for="label_id_1"&gt;Select an option&lt;/label&gt;
+    &lt;select id="label_id_1" data-toggle-target&gt;
+        &lt;option&gt;---------&lt;/option&gt;
+        &lt;option id="demo_example_field_1"&gt;foo&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;div data-toggle-next data-toggle-ref="demo_example_field_1"&gt;
+        &lt;label data-toggle-target for="label_id_2"&gt;An additional field&lt;/label&gt;
+        &lt;select id="label_id_2" data-toggle-target&gt;
+            &lt;option&gt;---------&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+</pre>
+            <h3>Example A Rendered</h3>
+            <form>
+                <label for="label_id_1">Select an option</label>
+                <select id="label_id_1" data-toggle-target>
+                    <option>---------</option>
+                    <option id="demo_example_field_1">foo</option>
+                </select>
+                <div data-toggle-next data-toggle-ref="demo_example_field_1">
+                    <label data-toggle-target for="label_id_2">An additional field</label>
+                    <select id="label_id_2" data-toggle-target>
                         <option>---------</option>
-                        <option id="demo_example_a_field_1_option">foo</option>
                     </select>
-                </fieldset>
-                <div data-toggle-next data-toggle-ref="demo_example_a_field_1_option">
-                    <div class="form-row">
-                        <label data-toggle-target for="demo_example_a_field_2">An additional field</label>
-                    </div>
-                    <div class="form-row">
-                        <select id="demo_example_a_field_2" data-toggle-target>
-                            <option>---------</option>
-                        </select>
-                    </div>
                 </div>
             </form>
 
-            <h2 class="heading">Example B</h2>
+            <h2>Example B</h2>
             <p>Toggling multiple fields at a time</p>
 
-            <form class="example-b">
-                <fieldset class="form-row">
-                    <legend>Selecting 'Yes' will enable the fields.</legend>
-                    <label for="demo_example_b_field_1"><input checked="checked" id="demo_example_b_field_1" name="demo_fieldset_1" type="radio"> No</label>
-                    <label for="demo_example_b_field_2"><input id="demo_example_b_field_2" name="demo_fieldset_1" type="radio"> Yes</label>
-                </fieldset>
-                <div data-toggle-next data-toggle-ref="demo_example_b_field_2">
-                    <div class="form-row">
-                        <label data-toggle-target for="demo_example_b_field_3">An additional field</label>
-                    </div>
-                    <div class="form-row">
-                        <select id="demo_example_b_field_3" data-toggle-target>
-                            <option>---------</option>
-                        </select>
-                    </div>
+            <h3>Example B Markup</h3>
+<pre class="prettyprint">
+&lt;body data-toggle-conditions="#demo_example_field_2"&gt;
+    &lt;legend&gt;Selecting 'Yes' will enable the fields.&lt;/legend&gt;
+    &lt;label for="label_id_3"&gt;
+        &lt;input id="label_id_3" checked="checked" name="fieldset_1" type="radio"&gt; No
+    &lt;/label&gt;
+    &lt;label for="demo_example_field_2"&gt;
+        &lt;input id="demo_example_field_2" name="fieldset_1" type="radio"&gt; Yes
+    &lt;/label&gt;
+    &lt;div data-toggle-next data-toggle-ref="demo_example_field_2"&gt;
+        &lt;label data-toggle-target for="label_id_5"&gt;An additional field&lt;/label&gt;
+        &lt;select id="label_id_5" data-toggle-target&gt;
+            &lt;option&gt;---------&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div data-toggle-next data-toggle-ref="demo_example_field_2"&gt;
+        &lt;label data-toggle-target for="label_id_6"&gt;Another additional field&lt;/label&gt;
+        &lt;input data-toggle-target id="label_id_6" type="text">
+    &lt;/div>
+</pre>
+
+            <h3>Example B Rendered</h3>
+            <form>
+                <label for="label_id_3"><input id="label_id_3" checked="checked" name="fieldset_1" type="radio"> No</label>
+                <label for="demo_example_field_2"><input id="demo_example_field_2" name="fieldset_1" type="radio"> Yes</label>
+                <div data-toggle-next data-toggle-ref="demo_example_field_2">
+                    <label data-toggle-target for="label_id_5">An additional field</label>
+                    <select id="label_id_5" data-toggle-target>
+                        <option>---------</option>
+                    </select>
                 </div>
-                <div data-toggle-next data-toggle-ref="demo_example_b_field_2">
-                    <div class="form-row">
-                        <label data-toggle-target for="demo_example_b_field_4">Another additional field</label>
-                    </div>
-                    <div class="form-row">
-                        <input data-toggle-target id="demo_example_b_field_4" type="text">
-                    </div>
+                <div data-toggle-next data-toggle-ref="demo_example_field_2">
+                    <label data-toggle-target for="label_id_6">Another additional field</label>
+                    <input data-toggle-target id="label_id_6" type="text">
+                </div>
+            </form>
+
+            <h2>Example C</h2>
+            <p>Inception toggle.</p>
+            <form>
+                <label for="label_id_7">First toggle</label>
+                <select id="label_id_7" data-toggle-target>
+                    <option>---------</option>
+                    <option id="demo_example_field_3">foo</option>
+                </select>
+                <div data-toggle-next data-toggle-ref="demo_example_field_3">
+                    <label data-toggle-target for="label_id_8">Second toggle</label>
+                    <select id="label_id_8" data-toggle-target>
+                        <option>---------</option>
+                        <option id="demo_example_field_4">bar</option>
+                    </select>
+                </div>
+                <div data-toggle-next data-toggle-ref="demo_example_field_4">
+                    <label data-toggle-target for="label_id_9">Third toggle</label>
+                    <select id="label_id_9" data-toggle-target>
+                        <option>---------</option>
+                        <option id="demo_example_field_5">bar</option>
+                    </select>
+                </div>
+                <div data-toggle-next data-toggle-ref="demo_example_field_5">
+                    <p>Foo paragraph that belongs to the third toggle.</p>
                 </div>
             </form>
         </div>
@@ -84,6 +195,7 @@
             </div>
         </div><!-- .footer -->
         <script src="gh-pages/js/vendor/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
         <script src="jquery.toggleFields.js"></script>
         <script>
             toggleFields();
