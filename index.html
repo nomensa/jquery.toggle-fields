@@ -51,6 +51,12 @@
                     <td>The condition used in the 'data-toggle-conditions' attribute. Used to associate the next group of form fields with its condition.</td>
                     <td>Required if using 'data-toggle-next'</td>
                 </tr>
+                <tr>
+                    <td>data-toggle-recursive</td>
+                    <td>none</td>
+                    <td>Used to identify a recursive condition; one that relies on another condition.</td>
+                    <td>Required if using recursive conditions</td>
+                </tr>
             </table>
 
             <h2>Options</h2>
@@ -163,28 +169,56 @@
             </form>
 
             <h2>Example C</h2>
-            <p>Inception toggle.</p>
+            <p>Recursive toggle.</p>
+            <h3>Example C Markup</h3>
+
+<pre class="prettyprint">
+&lt;body data-toggle-conditions="#demo_example_field_3, #demo_example_field_4, #demo_example_field_5"&gt;
+    &lt;label for="label_id_7"&gt;First toggle&lt;/label&gt;
+    &lt;select id="label_id_7" data-toggle-target&gt;
+        &lt;option&gt;---------&lt;/option&gt;
+        &lt;option id="demo_example_field_3"&gt;foo&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;div data-toggle-next data-toggle-ref="demo_example_field_3" data-toggle-recursive&gt;
+        &lt;label data-toggle-target for="label_id_8"&gt;Second toggle&lt;/label&gt;
+        &lt;select id="label_id_8" data-toggle-target&gt;
+            &lt;option&gt;---------&lt;/option&gt;
+            &lt;option id="demo_example_field_4"&gt;bar&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div data-toggle-next data-toggle-ref="demo_example_field_4" data-toggle-recursive&gt;
+        &lt;label data-toggle-target for="label_id_9"&gt;Third toggle&lt;/label&gt;
+        &lt;select id="label_id_9" data-toggle-target&gt;
+            &lt;option&gt;---------&lt;/option&gt;
+            &lt;option id="demo_example_field_5"&gt;bar&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div data-toggle-next data-toggle-ref="demo_example_field_5" data-toggle-recursive&gt;
+        &lt;p&gt;Foo paragraph that belongs to the third toggle.&lt;/p&gt;
+    &lt;/div&gt;
+</pre>
+            <h3>Example C Rendered</h3>
             <form>
                 <label for="label_id_7">First toggle</label>
                 <select id="label_id_7" data-toggle-target>
                     <option>---------</option>
                     <option id="demo_example_field_3">foo</option>
                 </select>
-                <div data-toggle-next data-toggle-ref="demo_example_field_3">
+                <div data-toggle-next data-toggle-ref="demo_example_field_3" data-toggle-recursive>
                     <label data-toggle-target for="label_id_8">Second toggle</label>
                     <select id="label_id_8" data-toggle-target>
                         <option>---------</option>
                         <option id="demo_example_field_4">bar</option>
                     </select>
                 </div>
-                <div data-toggle-next data-toggle-ref="demo_example_field_4">
+                <div data-toggle-next data-toggle-ref="demo_example_field_4" data-toggle-recursive>
                     <label data-toggle-target for="label_id_9">Third toggle</label>
                     <select id="label_id_9" data-toggle-target>
                         <option>---------</option>
                         <option id="demo_example_field_5">bar</option>
                     </select>
                 </div>
-                <div data-toggle-next data-toggle-ref="demo_example_field_5">
+                <div data-toggle-next data-toggle-ref="demo_example_field_5" data-toggle-recursive>
                     <p>Foo paragraph that belongs to the third toggle.</p>
                 </div>
             </form>
