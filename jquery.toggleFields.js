@@ -127,7 +127,7 @@ function toggleFields__applyToggle(condition, targets) {
             // Remove toggle class to the container
             container.removeClass(options.toggleClass);
             // Apply recursion when necessary
-            recursiveToggle(container);
+            toggleFields__recursive(container);
             // Call the toggleOffCallback
             options.toggleOffCallback();
         } 
@@ -149,7 +149,7 @@ function toggleFields__applyToggle(condition, targets) {
             }
 
             // Apply recursion when necessary
-            recursiveToggle(container, condition);
+            toggleFields__recursive(container, condition);
         }
     });
 }
@@ -159,7 +159,7 @@ function toggleFields__applyToggle(condition, targets) {
  * @param {jQueryObject} container - The containing element of the targets
  * @param {jQueryObject} condition - The trigger for the condition before recursion
  */
-function recursiveToggle(container, condition) {
+function toggleFields__recursive(container, condition) {
     var recursiveIdentifer = 'data-toggle-recursive';
 
     // If the container is recursive
