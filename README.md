@@ -7,7 +7,7 @@
 
 To get started you can:
 
- - Clone the repo: `git clone git@gitlab:anevins/toggle-fields.git`
+ - Clone the repo: `git clone git@gitlab:front-end/toggle-fields.git`
 
 Then it's just a case of including the following scripts on your page, best at the bottom:
 
