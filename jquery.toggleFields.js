@@ -108,7 +108,7 @@ function toggleFields__applyToggle(condition, targets) {
     // Initially disable all targets
     targets.each(function() {
         var target = $(this),
-            container = target.parents('[' + nextFormRowsIdentifier + ']');
+            container = target.parent('[' + nextFormRowsIdentifier + ']');
 
         // If the condition has been selected
         if (condition.is(':selected') || condition.is(':checked')) {
