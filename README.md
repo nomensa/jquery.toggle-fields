@@ -17,10 +17,29 @@ Then it's just a case of including the following scripts on your page, best at t
 ```
 
 ### DOM requirements
-Requires the following DOM attributes:
- * `[data-toggle-conditions="#field-1-with-condition, #field-2-with-condition"]` - Required: List of condition IDs, prepended with a hash, comma separated.
- * `[data-toggle-target]` - Required: The form field to toggle.
- * `[data-toggle-next]` - Optional: The next form row to toggle
+|Attribute|Value|Explanation|Required|
+|--- |--- |--- |--- |
+|data-toggle-conditions|#field-1-with-condition, #field-2-with-condition|A condition is a form field that triggers the toggle. This represents a jQuery selector string. Multiple conditions must be separated with a comma and space.|Required|
+|data-toggle-target|None|The target form field that is going to be toggled|Required|
+|data-toggle-next|None|Used to identify the next group of form fields. If not provided the direct sibling will be assumed.|Optional|
+|data-toggle-ref|#field-1-with-condition|The condition used in the 'data-toggle-conditions' attribute. Used to associate the next group of form fields with its condition.|Required if using 'data-toggle-next'|
+|data-toggle-recursive|none|Used to identify a recursive condition; one that relies on another condition.|Required if using recursive conditions|
+
+### Options
+|Option|Default|Explanation|
+|--- |--- |--- |
+|initCallback|function() {}|Callback when initialised|
+|toggleClass|js-toggleFields--on|Class to represent toggled state, used on the target container|
+|toggleOnCallback|function() {}|Callback when toggled on|
+|toggleOffCallback|function() {}|Callback when toggled off|
+
+### Init
+```javascript
+    toggleFields();
+```
+
+### Examples
+See index.html for examples.
 
 
 ## Development
