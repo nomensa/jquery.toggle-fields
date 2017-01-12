@@ -58,7 +58,7 @@ function toggleFields() {
             }
 
             // Get all target fields from the row
-            targets = nextFormRows.find('[' + targetIdentifier + '], .' + helpTextIdentifier);
+            targets = nextFormRows.find('> [' + targetIdentifier + '], > .' + helpTextIdentifier);
 
             // If there are no form fields
             if (targets.length === 0) {
