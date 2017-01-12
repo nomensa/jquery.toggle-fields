@@ -1,9 +1,6 @@
 'use strict';
 
-var pluginName = 'toggleFields',
-    defaults,
-    counter = 0,
-    conditionIdentifier = 'data-toggle-condition',
+var conditionIdentifier = 'data-toggle-condition',
     conditionsIdentifier = 'data-toggle-conditions',
     conditions = $('[' + conditionsIdentifier + ']'),
     helpTextIdentifier = 'form-row__instructions',
@@ -186,4 +183,12 @@ function toggleFields__recursive(container, condition) {
         // Re-run the logic if the recursive conditions have already been met
         toggleFields__applyToggle(condition, nextRecursiveTargets);
     }
+}
+
+/*
+ * Remove any traces of the toggleFields function on the page
+ */
+function toggleFields__destroy() {
+
+
 }
