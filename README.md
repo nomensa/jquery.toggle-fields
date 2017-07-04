@@ -20,7 +20,7 @@ Then it's just a case of including the following scripts on your page, best at t
 |Attribute|Value|Explanation|Required|
 |--- |--- |--- |--- |
 |[data-toggle-conditions](#data-toggle-conditions)|#field-1-with-condition, #field-2-with-condition|A condition is a form field that triggers the toggle. This represents a jQuery selector. Multiple conditions must be separated with a comma and space.|Required|
-|[data-toggle-target](#data-toggle-target)|None|The individual element to be toggled. Expected form field or textual element. Required|
+|[data-toggle-target](#data-toggle-target)|None|The individual element to be toggled. Expected form field or textual element.|Required|
 |[data-toggle-next](#data-toggle-next-data-toggle-ref)|None|Required if using multiple conditions. Used on the wrapping element of the targets.|Required|
 |[data-toggle-ref](#data-toggle-next-data-toggle-ref)|#field-1-with-condition|Required if using multiple conditions. Used on the wrapping element of the targets. Matches the ID in the 'data-toggle-conditions' attribute.|Required|
 |[data-toggle-recursive](#data-toggle-recursive)|none|Required if using recursive conditions. Used to identify a recursive condition; one that relies on another condition.|Required|
