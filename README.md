@@ -19,11 +19,31 @@ Then it's just a case of including the following scripts on your page, best at t
 ### DOM requirements
 |Attribute|Value|Explanation|Required|
 |--- |--- |--- |--- |
-|data-toggle-conditions|#field-1-with-condition, #field-2-with-condition|A condition is a form field that triggers the toggle. This represents a jQuery selector string. Multiple conditions must be separated with a comma and space.|Required|
-|data-toggle-target|None|The target form field that is going to be toggled|Required|
-|data-toggle-next|None|Used to identify the next group of form fields. If not provided the direct sibling will be assumed.|Optional|
-|data-toggle-ref|#field-1-with-condition|The condition used in the 'data-toggle-conditions' attribute. Used to associate the next group of form fields with its condition.|Required if using 'data-toggle-next'|
-|data-toggle-recursive|none|Used to identify a recursive condition; one that relies on another condition.|Required if using recursive conditions|
+|[data-toggle-conditions](#data-toggle-conditions)|#field-1-with-condition, #field-2-with-condition|A condition is a form field that triggers the toggle. This represents a jQuery selector. Multiple conditions must be separated with a comma and space.|Required|
+|[data-toggle-target](#data-toggle-target)|None|The individual element to be toggled. Expected form field or textual element. Required|
+|[data-toggle-next](#data-toggle-next-&-data-toggle-ref)|None|Required if using multiple conditions. Used on the wrapping element of the targets.|Required|
+|[data-toggle-ref](#data-toggle-next-&-data-toggle-ref)|#field-1-with-condition|Required if using multiple conditions. Used on the wrapping element of the targets. Matches the ID in the 'data-toggle-conditions' attribute.|Required|
+|[data-toggle-recursive](data-toggle-recursive)|none|Required if using recursive conditions. Used to identify a recursive condition; one that relies on another condition.|Required|
+
+#### DOM requirement examples
+##### data-toggle-conditions
+```html
+    <body data-toggle-conditions="#field-1-with-condition, #field-2-with-condition">
+```
+##### data-toggle-target
+```html
+    <label data-toggle-target for="field-1-with-condition-example"> Label for a form field </label>
+    <input data-toggle-target id="field-1-with-condition-example"/>
+```
+##### data-toggle-next & data-toggle-ref
+```html
+   <div data-toggle-next data-toggle-ref="field-1-with-condition"> The wrapping element of the targets </div>
+```
+##### data-toggle-recursive
+```html
+   <div data-toggle-next data-toggle-ref="field-2-with-condition" data-toggle-recursive> The wrapping element of the targets </div>
+```
+
 
 ### Options
 |Option|Default|Explanation|
