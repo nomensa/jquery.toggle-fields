@@ -19,85 +19,16 @@
             <h1>jQuery Toggle Fields</h1>
             <p>Adds form logic to hide form fields.</p>
 
-            <h2> HTML markup </h2>
-            <table>
-                <tr>
-                    <th>Attribute</th>
-                    <th>Value</th>
-                    <th>Explanation</th>
-                    <th>Required</th>
-                </tr>
-                <tr>
-                    <td>data-toggle-conditions</td>
-                    <td>#field-1-with-condition, #field-2-with-condition</td>
-                    <td>A condition is a form field that triggers the toggle. This represents a jQuery selector string. Multiple conditions must be separated with a comma and space.</td>
-                    <td>Required</td>
-                </tr>
-                <tr>
-                    <td>data-toggle-target</td>
-                    <td>None</td>
-                    <td>The target form field that is going to be toggled</td>
-                    <td>Required</td>
-                </tr>
-                <tr>
-                    <td>data-toggle-next</td>
-                    <td>None</td>
-                    <td>Used to identify the next group of form fields. If not provided the direct sibling will be assumed.</td>
-                    <td>Optional</td>
-                </tr>
-                <tr>
-                    <td>data-toggle-ref</td>
-                    <td>#field-1-with-condition</td>
-                    <td>The condition used in the 'data-toggle-conditions' attribute. Used to associate the next group of form fields with its condition.</td>
-                    <td>Required if using 'data-toggle-next'</td>
-                </tr>
-                <tr>
-                    <td>data-toggle-recursive</td>
-                    <td>none</td>
-                    <td>Used to identify a recursive condition; one that relies on another condition.</td>
-                    <td>Required if using recursive conditions</td>
-                </tr>
-            </table>
-
-            <h2>Options</h2>
-            <table>
-                <tr>
-                    <th>Option</th>
-                    <th>Default</th>
-                    <th>Explanation</th>
-                </tr>
-                <tr>
-                    <td>initCallback</td>
-                    <td>function() {}</td>
-                    <td>Callback when initialised</td>
-                </tr>
-                <tr>
-                    <td>toggleClass</td>
-                    <td>js-toggleFields--on</td>
-                    <td>Class to represent toggled state, used on the target container</td>
-                </tr>
-                <tr>
-                    <td>toggleOnCallback</td>
-                    <td>function() {}</td>
-                    <td>Callback when toggled on</td>
-                </tr>
-                <tr>
-                    <td>toggleOffCallback</td>
-                    <td>function() {}</td>
-                    <td>Callback when toggled off</td>
-                </tr>
-            </table>
-
-            <h2> Init </h2>
+            <h2> Examples </h2>
 <pre>
     <code data-language="javascript">toggleFields();
     </code>
 </pre>
 
-            <h2>Example A</h2>
+            <h3>Example A</h3>
             <p>Toggling a single field</p>
 
-            <h3>Example A Markup </h3>
+            <h4>Example A Markup </h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_1"&gt;
     &lt;label for="label_id_1"&gt;Select an option&lt;/label&gt;
@@ -112,7 +43,7 @@
         &lt;/select&gt;
     &lt;/div&gt;
 </pre>
-            <h3>Example A Rendered</h3>
+            <h4>Example A Rendered</h4>
             <form>
                 <label for="label_id_1">Select an option</label>
                 <select id="label_id_1" data-toggle-target>
@@ -127,10 +58,10 @@
                 </div>
             </form>
 
-            <h2>Example B</h2>
+            <h3>Example B</h3>
             <p>Toggling multiple fields at a time</p>
 
-            <h3>Example B Markup</h3>
+            <h4>Example B Markup</h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_2"&gt;
     &lt;legend&gt;Selecting 'Yes' will enable the fields.&lt;/legend&gt;
@@ -152,7 +83,7 @@
     &lt;/div>
 </pre>
 
-            <h3>Example B Rendered</h3>
+            <h4>Example B Rendered</h4>
             <form>
                 <label for="label_id_3"><input id="label_id_3" checked="checked" name="fieldset_1" type="radio"> No</label>
                 <label for="demo_example_field_2"><input id="demo_example_field_2" name="fieldset_1" type="radio"> Yes</label>
@@ -168,9 +99,9 @@
                 </div>
             </form>
 
-            <h2>Example C</h2>
+            <h3>Example C</h3>
             <p>Recursive toggle.</p>
-            <h3>Example C Markup</h3>
+            <h4>Example C Markup</h4>
 
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_3, #demo_example_field_4, #demo_example_field_5"&gt;
@@ -197,7 +128,7 @@
         &lt;p&gt;Foo paragraph that belongs to the third toggle.&lt;/p&gt;
     &lt;/div&gt;
 </pre>
-            <h3>Example C Rendered</h3>
+            <h4>Example C Rendered</h4>
             <form>
                 <label for="label_id_7">First toggle</label>
                 <select id="label_id_7" data-toggle-target>
