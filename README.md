@@ -63,8 +63,7 @@ See index.html for examples.
 
 
 ## Development
-
-This plugin requires:
+To ensure test suites continue to work while developing, this plugin requires:
 
  - [node.js](http://nodejs.org/) `~0.10.x`
  - [Grunt](http://gruntjs.com/) `~0.4.0`
@@ -114,6 +113,9 @@ $ grunt --connect
 # => Waiting...
 ```
 
-Copyright &copy; 2014 [@nomensa](http://nomensa.com)
+### Testing
+Test suites are currently under development and will be ready by October 2017.
+
+Copyright &copy; 2017 [@nomensa](http://nomensa.com)
 
 Licensed under [MIT](http://opensource.org/licenses/mit-license.php)
