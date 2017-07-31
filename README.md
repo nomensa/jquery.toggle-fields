@@ -44,7 +44,6 @@ Then it's just a case of including the following scripts on your page, best at t
    <div data-toggle-next data-toggle-ref="field-2-with-condition" data-toggle-recursive> The wrapping element of the targets </div>
 ```
 
-
 ### Options
 |Option|Default|Explanation|
 |--- |--- |--- |
@@ -73,7 +72,7 @@ To ensure test suites continue to work while developing, this plugin requires:
 First time setup of this plugin will require the node packages to be installed. On Windows use the command prompt with Ruby or on a Mac use terminal, install the global node.js packages:
 
 ```bash
-$npm install
+$ npm install
 ```
 
 ### Grunt
