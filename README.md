@@ -7,7 +7,7 @@
 
 To get started you can:
 
- - Clone the repo: `git clone git@gitlab:front-end/toggle-fields.git`
+ - Clone the repo: `git clone https://github.com/nomensa/jquery.toggle-fields.git`
 
 Then it's just a case of including the following scripts on your page, best at the bottom:
 
