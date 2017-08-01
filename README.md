@@ -47,10 +47,21 @@ Then it's just a case of including the following scripts on your page, best at t
 ### Options
 |Option|Default|Explanation|
 |--- |--- |--- |
+
 |initCallback|function() {}|Callback when initialised|
+|disabledClass|'disabled'|The class added for the disabled state|
+|disabledAttr|'disabled'|The disabled attribte added on form elements|
+|conditionIdentifier|'data-toggle-condition'|Used to identify the element with the condition|
+|conditionsIdentifier|'data-toggle-conditions'|Used to identify all conditions in the DOM|
+|helpTextIdentifier|'form-row__instructions'|Used to identify any additional text related to the targets|
+|nextFormRowsIdentifier|'data-toggle-next'|Used to identify the wrapper for the targets|
+|nextRowReferenceIdentifier|'data-toggle-ref'|Used to identify the condition in which the wrapper belongs to|
+|targetIdentifier|'data-toggle-target'|Used to identify the targets for the conditions|
+|toggleClass|'js-toggleFields--on'|Identifies whether the toggle has applied'
 |toggleClass|js-toggleFields--on|Class to represent toggled state, used on the target container|
 |toggleOnCallback|function() {}|Callback when toggled on|
 |toggleOffCallback|function() {}|Callback when toggled off|
+
 
 ### Init
 ```javascript

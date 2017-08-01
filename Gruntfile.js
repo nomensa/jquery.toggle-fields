@@ -22,21 +22,6 @@ module.exports = function(grunt) {
             }
         },
 
-        // Validate files with JSHint
-        jshint: {
-            options: {
-                globals: {
-                    '$': true,
-                    'jQuery': true
-                },
-                jshintrc: '.jshintrc'
-            },
-            files: [
-                'Gruntfile.js',
-                'jquery.toggleFields.js'
-            ],
-        },
-
         // Task for checking JavaScript Code Style with jscs
         jscs: {
             options: {
@@ -92,9 +77,7 @@ module.exports = function(grunt) {
                     'jquery.toggleFields.spec.js'
                 ],
                 tasks: [
-                    'karma',
-                    'jshint',
-                    'jscs'
+                    'karma'
                 ]
             }
         },
@@ -127,7 +110,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('test', ['jshint', 'jscs', 'karma']);
+    grunt.registerTask('test', ['karma']);
 
-    grunt.registerTask('release', ['test', 'uglify', 'version']);
+    grunt.registerTask('release', ['test', 'version']);
 };

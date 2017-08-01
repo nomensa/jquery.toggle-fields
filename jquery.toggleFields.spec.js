@@ -6,7 +6,7 @@ describe('toggle-fields', function() {
         '<form class="example-a">' +
             '<div>' +
                 '<label for="demo_example_a_field_1">Select an option</label>' +
-                '<select id="demo_example_a_field_1" data-toggle-target>' +
+                '<select id="demo_example_a_field_1">' +
                     '<option>---------</option>' +
                     '<option id="demo_example_a_field_1_option">foo</option>' +
                 '</select>' +
@@ -18,6 +18,7 @@ describe('toggle-fields', function() {
                 '</select>' +
             '</div>' +
         '</form>';
+
 
     beforeEach(function() {
         var testElement = $(markup);
@@ -31,6 +32,21 @@ describe('toggle-fields', function() {
 
         beforeEach(function() {
             toggleFields();
+            document.body.insertAdjacentHTML('afterbegin', markup);
+        });
+        
+        it('should disable the targets', function() {
+            var targets = $('[data-toggle-target]');
+            
+            targets.each(function() {
+                var target = $(this);
+
+                // If the taret is a label 
+                if (typeof target === 'label') {
+                    
+                }
+            });
         });
     });
+
 });
