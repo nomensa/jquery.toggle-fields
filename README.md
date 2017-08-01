@@ -7,7 +7,7 @@
 
 To get started you can:
 
- - Clone the repo: `git clone git@gitlab:front-end/toggle-fields.git`
+ - Clone the repo: `git clone https://github.com/nomensa/jquery.toggle-fields.git`
 
 Then it's just a case of including the following scripts on your page, best at the bottom:
 
@@ -112,9 +112,11 @@ $ grunt --connect
 # => Waiting...
 ```
 
-### Testing
-Test suites are currently under development and will be ready by October 2017.
+## Todo
+|Deadline|Task|
+|--- |--- |
+|October 2017|Test suites at 100% coverage|
+|September 2017|Add destroy method|
 
 Copyright &copy; 2017 [@nomensa](http://nomensa.com)
-
 Licensed under [MIT](http://opensource.org/licenses/mit-license.php)
