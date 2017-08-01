@@ -112,6 +112,13 @@ $ grunt --connect
 # => Waiting...
 ```
 
+## Testing
+
+```bash
+# Run Karma:
+$ ./node_modules/karma/bin/karma start
+```
+
 ## Todo
 |Deadline|Task|
 |--- |--- |
