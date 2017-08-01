@@ -116,7 +116,7 @@ $ grunt --connect
 |Deadline|Task|
 |--- |--- |
 |October 2017|Test suites at 100% coverage|
-|September 2017|Add destroy method|
+|November 2017|Add destroy method|
 
 Copyright &copy; 2017 [@nomensa](http://nomensa.com)
 Licensed under [MIT](http://opensource.org/licenses/mit-license.php)
