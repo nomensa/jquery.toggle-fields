@@ -2,10 +2,10 @@ function toggleFields(userOptions) {
     'use strict';
 
     var defaults = {
-            disabledClass: 'disabled',
-            disabledAttr: 'disabled',
             conditionIdentifier: 'data-toggle-condition',
             conditionsIdentifier: 'data-toggle-conditions',
+            disabledClass: 'disabled',
+            disabledAttr: 'disabled',
             helpTextIdentifier: 'form-row__instructions',
             nextFormRowsIdentifier: 'data-toggle-next',
             nextRowReferenceIdentifier: 'data-toggle-ref',

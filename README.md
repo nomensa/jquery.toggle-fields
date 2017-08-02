@@ -47,10 +47,10 @@ Then it's just a case of including the following scripts on your page, best at t
 ### Options
 |Option|Default|Explanation|
 |--- |--- |--- |
-|disabledClass|'disabled'|The class added for the disabled state|
-|disabledAttr|'disabled'|The disabled attribte added on form elements|
 |conditionIdentifier|'data-toggle-condition'|Used to identify the element with the condition|
 |conditionsIdentifier|'data-toggle-conditions'|Used to identify all conditions in the DOM|
+|disabledClass|'disabled'|The class added for the disabled state|
+|disabledAttr|'disabled'|The disabled attribte added on form elements|
 |helpTextIdentifier|'form-row__instructions'|Used to identify any additional text related to the targets|
 |nextFormRowsIdentifier|'data-toggle-next'|Used to identify the wrapper for the targets|
 |nextRowReferenceIdentifier|'data-toggle-ref'|Used to identify the condition in which the wrapper belongs to|
