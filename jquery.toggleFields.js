@@ -196,6 +196,7 @@ function toggleFields(userOptions) {
      */
     function toggleFields__destroy() {
 
-
+        // Destroy callback
+        options.destroyCallback();
     }
 }

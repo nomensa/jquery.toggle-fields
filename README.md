@@ -47,8 +47,6 @@ Then it's just a case of including the following scripts on your page, best at t
 ### Options
 |Option|Default|Explanation|
 |--- |--- |--- |
-
-|initCallback|function() {}|Callback when initialised|
 |disabledClass|'disabled'|The class added for the disabled state|
 |disabledAttr|'disabled'|The disabled attribte added on form elements|
 |conditionIdentifier|'data-toggle-condition'|Used to identify the element with the condition|
@@ -59,8 +57,10 @@ Then it's just a case of including the following scripts on your page, best at t
 |targetIdentifier|'data-toggle-target'|Used to identify the targets for the conditions|
 |toggleClass|'js-toggleFields--on'|Identifies whether the toggle has applied'
 |toggleClass|js-toggleFields--on|Class to represent toggled state, used on the target container|
-|toggleOnCallback|function() {}|Callback when toggled on|
-|toggleOffCallback|function() {}|Callback when toggled off|
+|initCallback|function(){}|Callback when initialised|
+|destroyCallback|function(){}|Callback when destroyed|
+|toggleOnCallback|function(){}|Callback when toggled on|
+|toggleOffCallback|function(){}|Callback when toggled off|
 
 
 ### Init
