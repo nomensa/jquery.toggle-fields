@@ -206,6 +206,35 @@ describe('toggle-fields', function() {
             });
         });
 
+        describe('If "nextFormRowsIdentifier" not provided:', function() {
+
+            it('Should assume the sibling elements', function() {
+                var options = {
+                        nextFormRowsIdentifier: 'field-that-does-not-exist'
+                    },
+                    originalRowsIdentifier = 'data-toggle-next',
+                    originalRefIdentifier = 'data-toggle-ref',
+                    originalRows = $('[' + originalRowsIdentifier + ']'),
+                    targets = $('[data-toggle-target]');
+
+                originalRows
+                    // Remove original identifiers
+                    .removeAttr(originalRowsIdentifier)
+                    .removeAttr(originalRefIdentifier);
+
+                // Init plugin
+                toggleFields(options);
+
+                // Each target
+                targets.each(function() {
+                    var target = $(this);
+
+                    // Each target should still be disabled
+                    expect(target.hasClass('disabled')).toBe(true);
+                });
+            });
+        });
+
         it('Should configure "nextRowReferenceIdentifier"', function() {
             var options = {
                     nextRowReferenceIdentifier: 'next-row-reference-identifier'
@@ -275,19 +304,6 @@ describe('toggle-fields', function() {
         it('Should configure "initCallback"', function() {
             var options = {
                     initCallback: function() {
-                        $('body').addClass('foo');
-                    }
-                };
-
-            // Init plugin
-            toggleFields(options);
-            // The container should have the new toggle class
-            expect($('body').hasClass('foo')).toBe(true);
-        });
-
-        it('Should configure "destroyCallback"', function() {
-            var options = {
-                    destroyCallback: function() {
                         $('body').addClass('foo');
                     }
                 };

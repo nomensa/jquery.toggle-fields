@@ -14,7 +14,6 @@ function toggleFields(userOptions) {
         },
         callbacks = {
             initCallback: function initCallback() {},
-            destroyCallback: function destroyCallback() {},
             toggleOnCallback: function toggleOnCallback() {},
             toggleOffCallback: function toggleOffCallback() {}
         };
@@ -184,14 +183,5 @@ function toggleFields(userOptions) {
             // Re-run the logic if the recursive conditions have already been met
             toggleFields__applyToggle(condition, nextRecursiveTargets);
         }
-    }
-
-    /*
-     * Remove any traces of the toggleFields function on the page
-     */
-    function toggleFields__destroy() {
-
-        // Destroy callback
-        options.destroyCallback();
     }
 }

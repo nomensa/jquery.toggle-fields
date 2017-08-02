@@ -58,7 +58,6 @@ Then it's just a case of including the following scripts on your page, best at t
 |toggleClass|'js-toggleFields--on'|Identifies whether the toggle has applied'
 |toggleClass|js-toggleFields--on|Class to represent toggled state, used on the target container|
 |initCallback|function(){}|Callback when initialised|
-|destroyCallback|function(){}|Callback when destroyed|
 |toggleOnCallback|function(){}|Callback when toggled on|
 |toggleOffCallback|function(){}|Callback when toggled off|
 
@@ -134,7 +133,6 @@ $ npm test
 |Deadline|Task|
 |--- |--- |
 |October 2017|Test suites at 100% coverage|
-|November 2017|Add destroy method|
 
 Copyright &copy; 2017 [@nomensa](http://nomensa.com)
 Licensed under [MIT](http://opensource.org/licenses/mit-license.php)
