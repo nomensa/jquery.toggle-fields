@@ -46,7 +46,7 @@ describe('toggle-fields', function() {
 
                 // If the taret is a label 
                 if (target.is('label')) {
-                    expect(target.attr('aria-label') === 'Disabled').toBe(true);
+                    expect(target.hasClass('disabled')).toBe(true);
                 } else {
                     expect(typeof target.attr('disabled') !== 'undefined' ).toBe(true);
                 }

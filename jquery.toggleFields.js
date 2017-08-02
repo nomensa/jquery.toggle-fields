@@ -123,15 +123,12 @@ function toggleFields(userOptions) {
                     // Remove the disable state
                     target.removeAttr(options.disabledAttr);
                 }
-
                 // Remove the disabled class to the target
                 target.removeClass(options.disabledClass);
                 // Remove toggle class to the container
                 container.removeClass(options.toggleClass);
                 // Apply recursion when necessary
                 toggleFields__recursive(container);
-                // Remove ARIA to the container to convey the enabled state
-                targets.removeAttr('aria-label');
                 // Call the toggleOffCallback
                 options.toggleOffCallback();
             } 
@@ -148,8 +145,6 @@ function toggleFields(userOptions) {
                     target.addClass(options.disabledClass);
                     // Apply recursive logic
                     container.addClass(options.toggleClass);
-                    // Add ARIA to the container to convey the disabled state
-                    targets.attr('aria-label', 'Disabled');
                     // Call the toggleOnCallback
                     options.toggleOnCallback();
                 }
