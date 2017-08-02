@@ -127,7 +127,7 @@ $ grunt --connect
 
 ```bash
 # Run Karma:
-$ ./node_modules/karma/bin/karma start
+$ npm test
 ```
 
 ## Todo
