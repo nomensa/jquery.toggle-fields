@@ -101,27 +101,6 @@ Next install the plugin's node packages:
 $ npm install
 ```
 
-### Watcher
-
-Running grunt (with watcher) will watch for any changes and recompile - best used during development:
-
-```bash
-$ grunt
-```
-
-#### Connect server (optional)
-
-You can run a connect web server on `http://0.0.0.0:9001`, if required, when running grunt:
-
-```bash
-$ grunt --connect
-# => Running "connect:server" (connect) task
-# => Started connect web server on http://0.0.0.0:9001
-
-# => Running "watch" task
-# => Waiting...
-```
-
 ## Testing
 
 ```bash
