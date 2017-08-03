@@ -18,7 +18,37 @@ describe('toggle-fields', function() {
                     '<option>Foo option</option>' +
                 '</select>' +
             '</div>' +
-        '</form>';
+        '</form>',
+        radioForm =
+        '<div data-toggle-conditions="#demo_example_field_2"></div>' +
+        '<label for="label_id_3">' +
+            '<input id="label_id_3" checked="checked" name="fieldset_1" type="radio"> No' +
+        '</label>' +
+        '<label for="demo_example_field_2">' +
+            '<input id="demo_example_field_2" name="fieldset_1" type="radio"> Yes' +
+        '</label>'+
+        '<div data-toggle-next data-toggle-ref="demo_example_field_2">' +
+            '<label data-toggle-target for="label_id_5">An additional field</label>' + 
+            '<select id="label_id_5" data-toggle-target>' +
+                '<option>---------</option>' +
+            '</select>' +
+        '</div>',
+        checkboxForm =
+        '<div data-toggle-conditions="#demo_example_field_2"></div>' +
+        '<label for="demo_example_field_2">' +
+            '<input id="demo_example_field_2" type="checkbox"> No' +
+        '</label>' +
+        '<div data-toggle-next data-toggle-ref="demo_example_field_2">' +
+            '<label data-toggle-target for="label_id_5">An additional field</label>' + 
+            '<select id="label_id_5" data-toggle-target>' +
+                '<option>---------</option>' +
+            '</select>' +
+        '</div>';
+
+    beforeEach(function() {
+        // Clean the DOM
+        $('body').empty();
+    });
 
     it('depends on jQuery', function() {
         expect($).toBeDefined();
@@ -26,23 +56,17 @@ describe('toggle-fields', function() {
 
     describe('Initialising the plugin:', function() {
 
-        beforeEach(function() {
-            var body = $('body');
-
-            body
-                // Clean the DOM
-                .empty()
-                // Add form markup
-                .append(defaultForm);
-            // Init plugin
-            toggleFields();
-        });
-        
         it('Should disable the targets', function() {
+            // Add form markup
+            $('body').append(defaultForm);
+
             var targets = $('[data-toggle-target]');
 
             targets.each(function() {
                 var target = $(this);
+
+                // Init plugin
+                toggleFields();
 
                 // If the taret is a label 
                 if (target.is('label')) {
@@ -52,32 +76,106 @@ describe('toggle-fields', function() {
                 }
             });
         });
+    });
 
-        describe('Triggering the condition: ', function() {
+    describe('Triggering the condition: ', function() {
 
-            it('Should enable the targets', function() {
-                var selectField = $('#demo_example_a_field_1'),
-                    condition = $('#demo_example_a_field_1_option'),
-                    targets = $('[data-toggle-target]');
+        it('Should enable the targets', function() {
+            // Add form markup
+            $('body').append(defaultForm);
 
-                // Emulate selecting the option with the condition
-                selectField
-                    .val(condition.val())
-                    .change();
+            var selectField = $('#demo_example_a_field_1'),
+                condition = $('#demo_example_a_field_1_option'),
+                targets = $('[data-toggle-target]');
 
-                // Each target
-                targets.each(function() {
-                    var target = $(this);
+            // Init plugin
+            toggleFields();
 
-                    // If the taret is a label 
-                    if (target.is('label')) {
-                        // The aria-label attribute should be removed
-                        expect(typeof target.attr('aria-label') === 'undefined').toBe(true);
-                    } else {
-                        // The disabled attriubte should be removed
-                        expect(typeof target.attr('disabled') === 'undefined' ).toBe(true);
-                    }
-                });
+            // Emulate selecting the option with the condition
+            selectField
+                .val(condition.val())
+                .change();
+
+            // Each target
+            targets.each(function() {
+                var target = $(this);
+
+                // If the taret is a label 
+                if (target.is('label')) {
+                    // The aria-label attribute should be removed
+                    expect(typeof target.attr('aria-label') === 'undefined').toBe(true);
+                } else {
+                    // The disabled attriubte should be removed
+                    expect(typeof target.attr('disabled') === 'undefined' ).toBe(true);
+                }
+            });
+        });
+    });
+
+    describe('When there are no targets in the nextFormRowsIdentifier:', function() {
+
+        it('Should apply the toggle directly to the nextFormRowsIdentifier element', function() {
+            // Add form markup
+            $('body').append(defaultForm);
+
+            var targets = $('[data-toggle-target]'),
+                nextFormRows = $('[data-toggle-next]');
+
+            // Remove the targets
+            targets.remove();
+            // Init plugin
+            toggleFields();
+            // The container should be disabled instead
+            expect(nextFormRows.hasClass('disabled')).toBe(true);
+        });
+    });
+
+    describe('If the condition is part of a related group of radio buttons', function() {
+
+        it('Should know when another related radio buttons have been selected', function() {
+            // Add form markup
+            $('body').append(radioForm);
+
+            var condition = $('#demo_example_field_2'),
+                relatedRadio = $('#label_id_3'),
+                targets = $('[data-toggle-target]');
+
+            // Init plugin
+            toggleFields();
+            
+            // Trigger the condition
+            condition.trigger('click');
+            targets.each(function() {
+                // The target should be enaled
+                expect($(this).hasClass('disabled')).toBe(false);
+            });
+
+            // Then trigger the related radio field to emulate unselecting the condition
+            relatedRadio.trigger('click');
+            targets.each(function() {
+                // The target should be disabled
+                expect($(this).hasClass('disabled')).toBe(true);
+            });
+
+        });
+    });
+
+    describe('If the condition is a checkbox', function() {
+
+        it('Should recognise when the checkbox is unchecked', function() {
+            // Add form markup
+            $('body').append(checkboxForm);
+
+            var condition = $('#demo_example_field_2'),
+                targets = $('[data-toggle-target]');
+
+            // Init plugin
+            toggleFields();
+            // Trigger the condition
+            condition.trigger('click');
+            targets.each(function() {
+                // The target should be enaled
+                expect($(this).hasClass('disabled')).toBe(false);
             });
         });
     });
@@ -85,9 +183,7 @@ describe('toggle-fields', function() {
     describe('Plugin options: ', function() {
 
         beforeEach(function() {
-            var body = $('body');
-
-            body
+            $('body')
                 // Clean the DOM
                 .empty()
                 // Add form markup
