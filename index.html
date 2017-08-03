@@ -26,9 +26,9 @@
     </code>
 </pre>
 
-            <h3>Example A</h3>
+            <h3 id="example-heading--a">Example A</h3>
             <p>Toggling a single field</p>
-            <h4>Example A Markup </h4>
+            <h4 aria-describedby="example-heading--a">Markup</h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_1"&gt;
     &lt;label for="label_id_1"&gt;Select an option&lt;/label&gt;
@@ -43,7 +43,7 @@
         &lt;/select&gt;
     &lt;/div&gt;
 </pre>
-            <h4>Example A Rendered</h4>
+            <h4 aria-describedby="example-heading--a">Rendered</h4>
             <form>
                 <label for="label_id_1">Select an option</label>
                 <select id="label_id_1" data-toggle-target>
@@ -59,9 +59,9 @@
             </form>
             <hr />
 
-            <h3>Example B</h3>
+            <h3 id="example-heading--b">Example B</h3>
             <p>Toggling multiple fields at a time</p>
-            <h4>Example B Markup</h4>
+            <h4 aria-describedby="example-heading--b">Markup</h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_2"&gt;
     &lt;label for="label_id_3"&gt;
@@ -81,7 +81,7 @@
         &lt;input data-toggle-target id="label_id_6" type="text">
     &lt;/div>
 </pre>
-            <h4>Example B Rendered</h4>
+            <h4 aria-describedby="example-heading--b">Rendered</h4>
             <form>
                 <label for="label_id_3"><input id="label_id_3" checked="checked" name="fieldset_1" type="radio"> No</label>
                 <label for="demo_example_field_2"><input id="demo_example_field_2" name="fieldset_1" type="radio"> Yes</label>
@@ -98,9 +98,9 @@
             </form>
             <hr />
 
-            <h3>Example C</h3>
+            <h3 id="example-heading--c">Example C</h3>
             <p>Recursive toggle.</p>
-            <h4>Example C Markup</h4>
+            <h4 aria-describedby="example-heading--c">Markup</h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_3, #demo_example_field_4, #demo_example_field_5"&gt;
     &lt;label for="label_id_7"&gt;First toggle&lt;/label&gt;
@@ -126,7 +126,7 @@
         &lt;p&gt;Foo paragraph that belongs to the third toggle.&lt;/p&gt;
     &lt;/div&gt;
 </pre>
-            <h4>Example C Rendered</h4>
+            <h4 aria-describedby="example-heading--c">Rendered</h4>
             <form>
                 <label for="label_id_7">First toggle</label>
                 <select id="label_id_7" data-toggle-target>
@@ -153,9 +153,9 @@
             </form>
             <hr />
 
-            <h3>Example D</h3>
+            <h3 id="example-heading--d">Example D</h3>
             <p>Checkbox example</p>
-            <h4>Example D Markup</h4>
+            <h4 aria-describedby="example-heading--d">Markup</h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_6"&gt;
     &#x3C;label for=&#x22;demo_example_field_6&#x22;&#x3E;
@@ -168,7 +168,7 @@
         &#x3C;/select&#x3E;
     &#x3C;/div&#x3E;
 </pre>
-            <h4>Example D Rendered</h4>
+            <h4 aria-describedby="example-heading--d">Rendered</h4>
             <form>
                 <label for="demo_example_field_6">
                     <input id="demo_example_field_6" checked type="checkbox"> No
@@ -182,9 +182,9 @@
             </form>
             <hr />
 
-            <h3>Example E</h3>
+            <h3 id="example-heading--e">Example E</h3>
             <p>Field with help text example</p>
-            <h4>Example D Markup</h4>
+            <h4 aria-describedby="example-heading--e">Markup</h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_7"&gt;
     &#x3C;label for=&#x22;label_id_10&#x22;&#x3E;Select an option&#x3C;/label&#x3E;
@@ -198,7 +198,7 @@
         &#x3C;p id=&#x22;instructions_id_1&#x22; class=&#x22;form-row__instructions&#x22;&#x3E;For example: name@example.com&#x3C;/p&#x3E;
     &#x3C;/div&#x3E;
 </pre>
-            <h4>Example E Rendered</h4>
+            <h4 aria-describedby="example-heading--e">Rendered</h4>
             <form>
                 <label for="label_id_10">Select an option</label>
                 <select id="label_id_10" data-toggle-target>
