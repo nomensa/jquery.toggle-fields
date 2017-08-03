@@ -43,7 +43,32 @@ describe('toggle-fields', function() {
             '<select id="label_id_5" data-toggle-target>' +
                 '<option>---------</option>' +
             '</select>' +
+        '</div>',
+        recursiveForm = 
+        '<div data-toggle-conditions="#demo_example_field_3, #demo_example_field_4, #demo_example_field_5"></div>' +
+        '<label for="label_id_7">First toggle</label>' +
+        '<select id="label_id_7" data-toggle-target>' + 
+            '<option>---------</option>' + 
+            '<option id="demo_example_field_3">foo</option>' + 
+        '</select>' + 
+        '<div data-toggle-next data-toggle-ref="demo_example_field_3" data-toggle-recursive>' + 
+            '<label data-toggle-target for="label_id_8">Second toggle</label>' + 
+            '<select id="label_id_8" data-toggle-target>' + 
+                '<option>---------</option>' + 
+                '<option id="demo_example_field_4">bar</option>' + 
+            '</select>' + 
+        '</div>' + 
+        '<div data-toggle-next data-toggle-ref="demo_example_field_4" data-toggle-recursive>' + 
+            '<label data-toggle-target for="label_id_9">Third toggle</label>' + 
+            '<select id="label_id_9" data-toggle-target>' + 
+                '<option>---------</option>' + 
+                '<option id="demo_example_field_5">bar</option>' + 
+            '</select>' + 
+        '</div>' + 
+        '<div data-toggle-next data-toggle-ref="demo_example_field_5" data-toggle-recursive>' + 
+            '<p>Foo paragraph that belongs to the third toggle.</p>' + 
         '</div>';
+
 
     beforeEach(function() {
         // Clean the DOM
@@ -160,7 +185,7 @@ describe('toggle-fields', function() {
         });
     });
 
-    describe('If the condition is a checkbox', function() {
+    describe('If the condition is a checkbox:', function() {
 
         it('Should recognise when the checkbox is unchecked', function() {
             // Add form markup
@@ -179,6 +204,82 @@ describe('toggle-fields', function() {
             });
         });
     });
+
+    describe('If using recursions:', function() {
+
+        it('Should only enable first recursion when first condition met', function() {
+            // Add form markup
+            $('body').append(recursiveForm);
+
+            var condition1 = $('#demo_example_field_3'),
+                condition2 = $('demo_example_field_4'),
+                condition3 = $('demo_example_field_5'),
+                condition2Targets = $('[data-toggle-ref="demo_example_field_3"] [data-toggle-target]'),
+                condition3Targets = $('[data-toggle-ref="demo_example_field_4"] [data-toggle-target]');
+
+            // Init plugin
+            toggleFields();
+
+            // First condition
+            condition1
+                // Target the select
+                .parents('select')
+                // Select the condition
+                .val(condition1.val())
+                // Trigger the change event
+                .trigger('change');
+
+            // Second condition targets should be enabled
+            condition2Targets.each(function() {
+                expect($(this).hasClass('disabled')).toBe(false);
+            });
+            // Third condition targets should be disabled
+            condition3Targets.each(function() {
+                expect($(this).hasClass('disabled')).toBe(true);
+            });
+        });
+
+        it('Should disable all conditions when first condition is not met', function() {
+            // Add form markup
+            $('body').append(recursiveForm);
+
+            var condition1 = $('#demo_example_field_3'),
+                condition2 = $('demo_example_field_4'),
+                condition3 = $('demo_example_field_5'),
+                condition2Targets = $('[data-toggle-ref="demo_example_field_3"] [data-toggle-target]'),
+                condition3Targets = $('[data-toggle-ref="demo_example_field_4"] [data-toggle-target]');
+
+            // Init plugin
+            toggleFields();
+
+            // Enable first condition
+            condition1
+                // Target the select
+                .parents('select')
+                // Select the condition
+                .val(condition1.val())
+                // Trigger the change event
+                .trigger('change');
+
+            // Disable first condition
+            condition1
+                // Target the select
+                .parents('select')
+                // Select an option other than the condition
+                .val('---------')
+                // Trigger the change event
+                .trigger('change');
+
+            // Second condition targets should be disabled
+            condition2Targets.each(function() {
+                expect($(this).hasClass('disabled')).toBe(true);
+            });
+            // Third condition targets should be disabled
+            condition3Targets.each(function() {
+                expect($(this).hasClass('disabled')).toBe(true);
+            });
+        });
+    })
 
     describe('Plugin options: ', function() {
 
