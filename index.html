@@ -11,7 +11,7 @@
         <link rel="stylesheet" media="screen" href="gh-pages/css/demo.css">
     </head>
 
-    <body data-toggle-conditions="#demo_example_field_1, #demo_example_field_2, #demo_example_field_3, #demo_example_field_4, #demo_example_field_5">
+    <body data-toggle-conditions="#demo_example_field_1, #demo_example_field_2, #demo_example_field_3, #demo_example_field_4, #demo_example_field_5, #demo_example_field_6, #demo_example_field_7">
         <div class="header">
             <p><a href="http://nomensa.com?plugin"><img src="gh-pages/img/nomensa-logo.png" alt="Nomensa humanising technology" width="135" heaight="38"></a></p>
         </div>
@@ -20,6 +20,7 @@
             <p>Adds form logic to hide form fields.</p>
 
             <h2> Examples </h2>
+            <p>To initialise the plugin</p>
 <pre>
     <code data-language="javascript">toggleFields();
     </code>
@@ -27,7 +28,6 @@
 
             <h3>Example A</h3>
             <p>Toggling a single field</p>
-
             <h4>Example A Markup </h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_1"&gt;
@@ -57,14 +57,13 @@
                     </select>
                 </div>
             </form>
+            <hr />
 
             <h3>Example B</h3>
             <p>Toggling multiple fields at a time</p>
-
             <h4>Example B Markup</h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_2"&gt;
-    &lt;legend&gt;Selecting 'Yes' will enable the fields.&lt;/legend&gt;
     &lt;label for="label_id_3"&gt;
         &lt;input id="label_id_3" checked="checked" name="fieldset_1" type="radio"&gt; No
     &lt;/label&gt;
@@ -82,7 +81,6 @@
         &lt;input data-toggle-target id="label_id_6" type="text">
     &lt;/div>
 </pre>
-
             <h4>Example B Rendered</h4>
             <form>
                 <label for="label_id_3"><input id="label_id_3" checked="checked" name="fieldset_1" type="radio"> No</label>
@@ -98,11 +96,11 @@
                     <input data-toggle-target id="label_id_6" type="text">
                 </div>
             </form>
+            <hr />
 
             <h3>Example C</h3>
             <p>Recursive toggle.</p>
             <h4>Example C Markup</h4>
-
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_3, #demo_example_field_4, #demo_example_field_5"&gt;
     &lt;label for="label_id_7"&gt;First toggle&lt;/label&gt;
@@ -153,6 +151,67 @@
                     <p>Foo paragraph that belongs to the third toggle.</p>
                 </div>
             </form>
+            <hr />
+
+            <h3>Example D</h3>
+            <p>Checkbox example</p>
+            <h4>Example D Markup</h4>
+<pre class="prettyprint">
+&lt;body data-toggle-conditions="#demo_example_field_6"&gt;
+    &#x3C;label for=&#x22;demo_example_field_6&#x22;&#x3E;
+        &#x3C;input id=&#x22;demo_example_field_6&#x22; checked type=&#x22;checkbox&#x22;&#x3E; No
+    &#x3C;/label&#x3E;
+    &#x3C;div data-toggle-next data-toggle-ref=&#x22;demo_example_field_6&#x22;&#x3E;
+        &#x3C;label data-toggle-target for=&#x22;label_id_9&#x22;&#x3E;An additional field&#x3C;/label&#x3E;
+        &#x3C;select id=&#x22;label_id_9&#x22; data-toggle-target&#x3E;
+            &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
+        &#x3C;/select&#x3E;
+    &#x3C;/div&#x3E;
+</pre>
+            <h4>Example D Rendered</h4>
+            <form>
+                <label for="demo_example_field_6">
+                    <input id="demo_example_field_6" checked type="checkbox"> No
+                </label>
+                <div data-toggle-next data-toggle-ref="demo_example_field_6">
+                    <label data-toggle-target for="label_id_9">An additional field</label>
+                    <select id="label_id_9" data-toggle-target>
+                        <option>---------</option>
+                    </select>
+                </div>
+            </form>
+            <hr />
+
+            <h3>Example E</h3>
+            <p>Field with help text example</p>
+            <h4>Example D Markup</h4>
+<pre class="prettyprint">
+&lt;body data-toggle-conditions="#demo_example_field_7"&gt;
+    &#x3C;label for=&#x22;label_id_10&#x22;&#x3E;Select an option&#x3C;/label&#x3E;
+    &#x3C;select id=&#x22;label_id_10&#x22; data-toggle-target&#x3E;
+        &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
+        &#x3C;option id=&#x22;demo_example_field_7&#x22;&#x3E;foo&#x3C;/option&#x3E;
+    &#x3C;/select&#x3E;
+    &#x3C;div data-toggle-next data-toggle-ref=&#x22;demo_example_field_7&#x22;&#x3E;
+        &#x3C;label data-toggle-target for=&#x22;label_id_11&#x22;&#x3E;Email address&#x3C;/label&#x3E;
+        &#x3C;input aria-describedby=&#x22;instructions_id_1&#x22; id=&#x22;label_id_11&#x22; type=&#x22;text&#x22; /&#x3E;
+        &#x3C;p id=&#x22;instructions_id_1&#x22; class=&#x22;form-row__instructions&#x22;&#x3E;For example: name@example.com&#x3C;/p&#x3E;
+    &#x3C;/div&#x3E;
+</pre>
+            <h4>Example E Rendered</h4>
+            <form>
+                <label for="label_id_10">Select an option</label>
+                <select id="label_id_10" data-toggle-target>
+                    <option>---------</option>
+                    <option id="demo_example_field_7">foo</option>
+                </select>
+                <div data-toggle-next data-toggle-ref="demo_example_field_7">
+                    <label data-toggle-target for="label_id_11">Email address</label>
+                    <input aria-describedby="instructions_id_1" id="label_id_11" type="text" />
+                    <p id="instructions_id_1" class="form-row__instructions">For example: name@example.com</p>
+                </div>
+            </form>
+
         </div>
         <div class="footer">
             <div>
