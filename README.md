@@ -13,7 +13,7 @@ Then it's just a case of including the following scripts on your page, best at t
 
 ```html
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="jquery.togglefields.js"></script>
+  <script src="jquery.toggleFields.js"></script>
 ```
 
 ### DOM requirements
@@ -79,8 +79,14 @@ To ensure test suites continue to work while developing, this plugin requires:
  - [jQuery](http://jquery.com) `~v1.9.x`
 
 ### Node
-First time setup of this plugin will require the node packages to be installed. On Windows use the command prompt with Ruby or on a Mac use terminal, install the global node.js packages:
+First time setup of this plugin will require the node packages to be installed. 
 
+If you have NVM installed, make sure to use the correct node version:
+```bash
+$ nvm use 0.10
+```
+
+Install the global node.js packages:
 ```bash
 $ npm install
 ```
@@ -111,7 +117,7 @@ $ npm test
 ## Todo
 |Deadline|Task|
 |--- |--- |
-|October 2017|Test suites at 100% coverage|
+|Nov 2017|Add destroy method|
 
 Copyright &copy; 2017 [@nomensa](http://nomensa.com)
 Licensed under [MIT](http://opensource.org/licenses/mit-license.php)
