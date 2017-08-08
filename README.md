@@ -67,6 +67,26 @@ Then it's just a case of including the following scripts on your page, best at t
     toggleFields();
 ```
 
+### Init with options
+```javascript
+    var options = {
+        conditionIdentifier: 'data-toggle-condition',
+        conditionsIdentifier: 'data-toggle-conditions',
+        disabledClass: 'disabled',
+        disabledAttr: 'disabled',
+        helpTextIdentifier: 'form-row__instructions',
+        nextFormRowsIdentifier: 'data-toggle-next',
+        nextRowReferenceIdentifier: 'data-toggle-ref',
+        targetIdentifier: 'data-toggle-target',
+        toggleClass: 'js-toggleFields--on'
+        initCallback: function initCallback() {},
+        toggleOnCallback: function toggleOnCallback() {},
+        toggleOffCallback: function toggleOffCallback() {}
+    };
+
+    toggleFields(options);
+```
+
 ### Examples
 See index.html for examples.
 
