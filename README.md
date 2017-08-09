@@ -142,7 +142,8 @@ Inside the `coverage` folder, open the `PhantomJS 1.9.8 (Linux 0.0.0)` folder to
 ## Todo
 |Deadline|Task|
 |--- |--- |
-|Nov 2017|Add destroy method|
+|Jan 2018|Transform to use jQuery plugin pattern|
+|Feb 2018|Add destroy method|
 
 Copyright &copy; 2017 [@nomensa](http://nomensa.com)
 Licensed under [MIT](http://opensource.org/licenses/mit-license.php)
