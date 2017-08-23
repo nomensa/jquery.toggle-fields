@@ -24,7 +24,8 @@
             toggleClass: 'js-toggleFields--on',
             initCallback: function initCallback() {},
             toggleOnCallback: function toggleOnCallback() {},
-            toggleOffCallback: function toggleOffCallback() {}
+            toggleOffCallback: function toggleOffCallback() {},
+            destroyCallback: function destroyCallback() {}
         };
 
     // The plugin constructor
@@ -197,8 +198,31 @@
                 // Re-run the logic if the recursive conditions have already been met
                 self.applyToggle(self, condition, nextRecursiveTargets);
             }
-        }
+        },
+        destroy: function() {
+            var self = this,
+                targets = $('[' + self.settings.targetIdentifier + ']'),
+                targetContainers = $('[' + self.settings.nextFormRowsIdentifier + ']'),
+                helpText = $('.' + self.settings.helpTextIdentifier);
 
+            // Run the destroy callback
+            self.settings.destroyCallback();
+
+            targets
+                // Remove disabled attribute for each target
+                .removeAttr(self.settings.disabledAttr)
+                // Remove disabled class for each target
+                .removeClass(self.settings.disabledClass);
+
+            // Remove disabled class for each help text
+            helpText.removeClass(self.settings.disabledClass);
+
+            // Remove the toggle class from the target containers
+            targetContainers.removeClass(self.settings.toggleClass);
+
+            // Remove the data bindings
+            self.element.removeData('plugin_toggleFields');
+        }
     });
 
     // Preventing against multiple instantiations

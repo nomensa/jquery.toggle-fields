@@ -11,7 +11,7 @@
         <link rel="stylesheet" media="screen" href="gh-pages/css/demo.css">
     </head>
 
-    <body data-toggle-conditions="#demo_example_field_1, #demo_example_field_2, #demo_example_field_3, #demo_example_field_4, #demo_example_field_5, #demo_example_field_6, #demo_example_field_7">
+    <body data-toggle-conditions="#demo_example_field_1, #demo_example_field_2, #demo_example_field_3, #demo_example_field_4, #demo_example_field_5, #demo_example_field_6, #demo_example_field_7, #demo_example_field_8">
         <div class="header">
             <p><a href="http://nomensa.com?plugin"><img src="gh-pages/img/nomensa-logo.png" alt="Nomensa humanising technology" width="135" heaight="38"></a></p>
         </div>
@@ -212,7 +212,27 @@
                     <p id="instructions_id_1" class="form-row__instructions">For example: name@example.com</p>
                 </div>
             </form>
+            <hr />
 
+            <h3 id="example-heading--e">Example F</h3>
+            <p>Destroy method</p>
+            <h4 aria-describedby="example-heading--f">Markup</h4>
+<pre class="prettyprint">
+
+</pre>
+            <h4 aria-describedby="example-heading--f">Rendered</h4>
+            <form id="destroyMethod">
+                <label for="label_id_11">Select an option</label>
+                <select id="label_id_11" data-toggle-target>
+                    <option>---------</option>
+                    <option id="demo_example_field_8">foo</option>
+                </select>
+                <div data-toggle-next data-toggle-ref="demo_example_field_8">
+                    <label data-toggle-target for="label_id_12">Email address</label>
+                    <input data-toggle-target aria-describedby="instructions_id_2" id="label_id_12" type="text" />
+                    <p id="instructions_id_2" class="form-row__instructions">For example: name@example.com</p>
+                </div>
+            </form>
         </div>
         <div class="footer">
             <div>
@@ -221,9 +241,12 @@
         </div><!-- .footer -->
         <script src="gh-pages/js/vendor/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-        <script src="jquery.toggleFields.js"></script>
+        <script src="src/jquery.toggleFields.js"></script>
         <script>
             $('form').toggleFields();
+
+            // Example F: Run the destroy method 
+            $('form#destroyMethod').data('plugin_toggleFields').destroy();
         </script>
     </body>
 </html>
