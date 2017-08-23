@@ -16,8 +16,8 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'gh-pages/js/vendor/jquery/1.11.1/jquery.min.js',
-      'jquery.toggleFields.js',
-      'jquery.toggleFields.spec.js'
+      'src/jquery.toggleFields.js',
+      'src/jquery.toggleFields.spec.js'
     ],
 
 
