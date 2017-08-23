@@ -32,17 +32,22 @@
             <h4 aria-describedby="example-heading--a">Markup</h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_1"&gt;
-    &lt;label for="label_id_1"&gt;Select an option&lt;/label&gt;
-    &lt;select id="label_id_1" data-toggle-target&gt;
-        &lt;option&gt;---------&lt;/option&gt;
-        &lt;option id="demo_example_field_1"&gt;foo&lt;/option&gt;
-    &lt;/select&gt;
-    &lt;div data-toggle-next data-toggle-ref="demo_example_field_1"&gt;
-        &lt;label data-toggle-target for="label_id_2"&gt;An additional field&lt;/label&gt;
-        &lt;select id="label_id_2" data-toggle-target&gt;
-            &lt;option&gt;---------&lt;/option&gt;
-        &lt;/select&gt;
-    &lt;/div&gt;
+&#x3C;form&#x3E;
+    &#x3C;label for=&#x22;label_id_1&#x22;&#x3E;Select an option&#x3C;/label&#x3E;
+    &#x3C;select id=&#x22;label_id_1&#x22; data-toggle-target&#x3E;
+        &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
+        &#x3C;option id=&#x22;demo_example_field_1&#x22;&#x3E;foo&#x3C;/option&#x3E;
+    &#x3C;/select&#x3E;
+    &#x3C;div data-toggle-next data-toggle-ref=&#x22;demo_example_field_1&#x22;&#x3E;
+        &#x3C;label data-toggle-target for=&#x22;label_id_2&#x22;&#x3E;An additional field&#x3C;/label&#x3E;
+        &#x3C;select id=&#x22;label_id_2&#x22; data-toggle-target&#x3E;
+            &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
+        &#x3C;/select&#x3E;
+    &#x3C;/div&#x3E;
+&#x3C;/form&#x3E;
+&#x3C;script&#x3E;
+    $(&#x27;form&#x27;).toggleFields();
+&#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--a">Rendered</h4>
             <form>
@@ -65,22 +70,23 @@
             <h4 aria-describedby="example-heading--b">Markup</h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_2"&gt;
-    &lt;label for="label_id_3"&gt;
-        &lt;input id="label_id_3" checked="checked" name="fieldset_1" type="radio"&gt; No
-    &lt;/label&gt;
-    &lt;label for="demo_example_field_2"&gt;
-        &lt;input id="demo_example_field_2" name="fieldset_1" type="radio"&gt; Yes
-    &lt;/label&gt;
-    &lt;div data-toggle-next data-toggle-ref="demo_example_field_2"&gt;
-        &lt;label data-toggle-target for="label_id_5"&gt;An additional field&lt;/label&gt;
-        &lt;select id="label_id_5" data-toggle-target&gt;
-            &lt;option&gt;---------&lt;/option&gt;
-        &lt;/select&gt;
-    &lt;/div&gt;
-    &lt;div data-toggle-next data-toggle-ref="demo_example_field_2"&gt;
-        &lt;label data-toggle-target for="label_id_6"&gt;Another additional field&lt;/label&gt;
-        &lt;input data-toggle-target id="label_id_6" type="text">
-    &lt;/div>
+&#x3C;form&#x3E;
+    &#x3C;label for=&#x22;label_id_3&#x22;&#x3E;&#x3C;input id=&#x22;label_id_3&#x22; checked=&#x22;checked&#x22; name=&#x22;fieldset_1&#x22; type=&#x22;radio&#x22;&#x3E; No&#x3C;/label&#x3E;
+    &#x3C;label for=&#x22;demo_example_field_2&#x22;&#x3E;&#x3C;input id=&#x22;demo_example_field_2&#x22; name=&#x22;fieldset_1&#x22; type=&#x22;radio&#x22;&#x3E; Yes&#x3C;/label&#x3E;
+    &#x3C;div data-toggle-next data-toggle-ref=&#x22;demo_example_field_2&#x22;&#x3E;
+        &#x3C;label data-toggle-target for=&#x22;label_id_5&#x22;&#x3E;An additional field&#x3C;/label&#x3E;
+        &#x3C;select id=&#x22;label_id_5&#x22; data-toggle-target&#x3E;
+            &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
+        &#x3C;/select&#x3E;
+    &#x3C;/div&#x3E;
+    &#x3C;div data-toggle-next data-toggle-ref=&#x22;demo_example_field_2&#x22;&#x3E;
+        &#x3C;label data-toggle-target for=&#x22;label_id_6&#x22;&#x3E;Another additional field&#x3C;/label&#x3E;
+        &#x3C;input data-toggle-target id=&#x22;label_id_6&#x22; type=&#x22;text&#x22;&#x3E;
+    &#x3C;/div&#x3E;
+&#x3C;/form&#x3E;
+&#x3C;script&#x3E;
+    $(&#x27;form&#x27;).toggleFields();
+&#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--b">Rendered</h4>
             <form>
@@ -104,28 +110,33 @@
             <h4 aria-describedby="example-heading--c">Markup</h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_3, #demo_example_field_4, #demo_example_field_5"&gt;
-    &lt;label for="label_id_7"&gt;First toggle&lt;/label&gt;
-    &lt;select id="label_id_7" data-toggle-target&gt;
-        &lt;option&gt;---------&lt;/option&gt;
-        &lt;option id="demo_example_field_3"&gt;foo&lt;/option&gt;
-    &lt;/select&gt;
-    &lt;div data-toggle-next data-toggle-ref="demo_example_field_3" data-toggle-recursive&gt;
-        &lt;label data-toggle-target for="label_id_8"&gt;Second toggle&lt;/label&gt;
-        &lt;select id="label_id_8" data-toggle-target&gt;
-            &lt;option&gt;---------&lt;/option&gt;
-            &lt;option id="demo_example_field_4"&gt;bar&lt;/option&gt;
-        &lt;/select&gt;
-    &lt;/div&gt;
-    &lt;div data-toggle-next data-toggle-ref="demo_example_field_4" data-toggle-recursive&gt;
-        &lt;label data-toggle-target for="label_id_9"&gt;Third toggle&lt;/label&gt;
-        &lt;select id="label_id_9" data-toggle-target&gt;
-            &lt;option&gt;---------&lt;/option&gt;
-            &lt;option id="demo_example_field_5"&gt;bar&lt;/option&gt;
-        &lt;/select&gt;
-    &lt;/div&gt;
-    &lt;div data-toggle-next data-toggle-ref="demo_example_field_5" data-toggle-recursive&gt;
-        &lt;p&gt;Foo paragraph that belongs to the third toggle.&lt;/p&gt;
-    &lt;/div&gt;
+&#x3C;form&#x3E;
+    &#x3C;label for=&#x22;label_id_7&#x22;&#x3E;First toggle&#x3C;/label&#x3E;
+    &#x3C;select id=&#x22;label_id_7&#x22; data-toggle-target&#x3E;
+        &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
+        &#x3C;option id=&#x22;demo_example_field_3&#x22;&#x3E;foo&#x3C;/option&#x3E;
+    &#x3C;/select&#x3E;
+    &#x3C;div data-toggle-next data-toggle-ref=&#x22;demo_example_field_3&#x22; data-toggle-recursive&#x3E;
+        &#x3C;label data-toggle-target for=&#x22;label_id_8&#x22;&#x3E;Second toggle&#x3C;/label&#x3E;
+        &#x3C;select id=&#x22;label_id_8&#x22; data-toggle-target&#x3E;
+            &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
+            &#x3C;option id=&#x22;demo_example_field_4&#x22;&#x3E;bar&#x3C;/option&#x3E;
+        &#x3C;/select&#x3E;
+    &#x3C;/div&#x3E;
+    &#x3C;div data-toggle-next data-toggle-ref=&#x22;demo_example_field_4&#x22; data-toggle-recursive&#x3E;
+        &#x3C;label data-toggle-target for=&#x22;label_id_9&#x22;&#x3E;Third toggle&#x3C;/label&#x3E;
+        &#x3C;select id=&#x22;label_id_9&#x22; data-toggle-target&#x3E;
+            &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
+            &#x3C;option id=&#x22;demo_example_field_5&#x22;&#x3E;bar&#x3C;/option&#x3E;
+        &#x3C;/select&#x3E;
+    &#x3C;/div&#x3E;
+    &#x3C;div data-toggle-next data-toggle-ref=&#x22;demo_example_field_5&#x22; data-toggle-recursive&#x3E;
+        &#x3C;p&#x3E;Foo paragraph that belongs to the third toggle.&#x3C;/p&#x3E;
+    &#x3C;/div&#x3E;
+&#x3C;/form&#x3E;
+&#x3C;script&#x3E;
+    $(&#x27;form&#x27;).toggleFields();
+&#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--c">Rendered</h4>
             <form>
@@ -159,6 +170,7 @@
             <h4 aria-describedby="example-heading--d">Markup</h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_6"&gt;
+&#x3C;form&#x3E;
     &#x3C;label for=&#x22;demo_example_field_6&#x22;&#x3E;
         &#x3C;input id=&#x22;demo_example_field_6&#x22; checked type=&#x22;checkbox&#x22;&#x3E; No
     &#x3C;/label&#x3E;
@@ -168,6 +180,10 @@
             &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
         &#x3C;/select&#x3E;
     &#x3C;/div&#x3E;
+&#x3C;/form&#x3E;
+&#x3C;script&#x3E;
+    $(&#x27;form&#x27;).toggleFields();
+&#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--d">Rendered</h4>
             <form>
@@ -188,6 +204,7 @@
             <h4 aria-describedby="example-heading--e">Markup</h4>
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_7"&gt;
+&#x3C;form&#x3E;
     &#x3C;label for=&#x22;label_id_10&#x22;&#x3E;Select an option&#x3C;/label&#x3E;
     &#x3C;select id=&#x22;label_id_10&#x22; data-toggle-target&#x3E;
         &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
@@ -198,6 +215,10 @@
         &#x3C;input data-toggle-target aria-describedby=&#x22;instructions_id_1&#x22; id=&#x22;label_id_11&#x22; type=&#x22;text&#x22; /&#x3E;
         &#x3C;p id=&#x22;instructions_id_1&#x22; class=&#x22;form-row__instructions&#x22;&#x3E;For example: name@example.com&#x3C;/p&#x3E;
     &#x3C;/div&#x3E;
+&#x3C;/form&#x3E;
+&#x3C;script&#x3E;
+    $(&#x27;form&#x27;).toggleFields();
+&#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--e">Rendered</h4>
             <form>
@@ -218,7 +239,28 @@
             <p>Destroy method</p>
             <h4 aria-describedby="example-heading--f">Markup</h4>
 <pre class="prettyprint">
+&lt;body data-toggle-conditions="#demo_example_field_8"&gt;
+&#x3C;form id=&#x22;destroyMethod&#x22;&#x3E;
+    &#x3C;label for=&#x22;label_id_11&#x22;&#x3E;Select an option&#x3C;/label&#x3E;
+    &#x3C;select id=&#x22;label_id_11&#x22; data-toggle-target&#x3E;
+        &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
+        &#x3C;option id=&#x22;demo_example_field_8&#x22;&#x3E;foo&#x3C;/option&#x3E;
+    &#x3C;/select&#x3E;
+    &#x3C;div data-toggle-next data-toggle-ref=&#x22;demo_example_field_8&#x22;&#x3E;
+        &#x3C;label data-toggle-target for=&#x22;label_id_12&#x22;&#x3E;Email address&#x3C;/label&#x3E;
+        &#x3C;input data-toggle-target aria-describedby=&#x22;instructions_id_2&#x22; id=&#x22;label_id_12&#x22; type=&#x22;text&#x22; /&#x3E;
+        &#x3C;p id=&#x22;instructions_id_2&#x22; class=&#x22;form-row__instructions&#x22;&#x3E;For example: name@example.com&#x3C;/p&#x3E;
+    &#x3C;/div&#x3E;
+&#x3C;/form&#x3E;
+&#x3C;script&#x3E;
+    var form = $(&#x27;form&#x27;);
 
+    form
+        // init
+        .toggleFields()
+        // destroy
+        .data('plugin_toggleFields').destroy();
+&#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--f">Rendered</h4>
             <form id="destroyMethod">
