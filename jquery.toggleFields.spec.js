@@ -4,7 +4,7 @@ describe('toggle-fields', function() {
 
     var defaultForm =
         '<div data-toggle-conditions="#demo_example_a_field_1_option"></div>' + 
-        '<form class="example-a">' +
+        '<form>' +
             '<div>' +
                 '<label for="demo_example_a_field_1">Select an option</label>' +
                 '<select id="demo_example_a_field_1">' +
@@ -20,54 +20,60 @@ describe('toggle-fields', function() {
             '</div>' +
         '</form>',
         radioForm =
-        '<div data-toggle-conditions="#demo_example_field_2"></div>' +
-        '<label for="label_id_3">' +
-            '<input id="label_id_3" checked="checked" name="fieldset_1" type="radio"> No' +
-        '</label>' +
-        '<label for="demo_example_field_2">' +
-            '<input id="demo_example_field_2" name="fieldset_1" type="radio"> Yes' +
-        '</label>'+
-        '<div data-toggle-next data-toggle-ref="demo_example_field_2">' +
-            '<label data-toggle-target for="label_id_5">An additional field</label>' + 
-            '<select id="label_id_5" data-toggle-target>' +
-                '<option>---------</option>' +
-            '</select>' +
-        '</div>',
+        '<form>' +
+            '<div data-toggle-conditions="#demo_example_field_2"></div>' +
+            '<label for="label_id_3">' +
+                '<input id="label_id_3" checked="checked" name="fieldset_1" type="radio"> No' +
+            '</label>' +
+            '<label for="demo_example_field_2">' +
+                '<input id="demo_example_field_2" name="fieldset_1" type="radio"> Yes' +
+            '</label>'+
+            '<div data-toggle-next data-toggle-ref="demo_example_field_2">' +
+                '<label data-toggle-target for="label_id_5">An additional field</label>' + 
+                '<select id="label_id_5" data-toggle-target>' +
+                    '<option>---------</option>' +
+                '</select>' +
+            '</div>' +
+        '</form>',
         checkboxForm =
-        '<div data-toggle-conditions="#demo_example_field_2"></div>' +
-        '<label for="demo_example_field_2">' +
-            '<input id="demo_example_field_2" type="checkbox"> No' +
-        '</label>' +
-        '<div data-toggle-next data-toggle-ref="demo_example_field_2">' +
-            '<label data-toggle-target for="label_id_5">An additional field</label>' + 
-            '<select id="label_id_5" data-toggle-target>' +
-                '<option>---------</option>' +
-            '</select>' +
-        '</div>',
+        '<form>' + 
+            '<div data-toggle-conditions="#demo_example_field_2"></div>' +
+            '<label for="demo_example_field_2">' +
+                '<input id="demo_example_field_2" type="checkbox"> No' +
+            '</label>' +
+            '<div data-toggle-next data-toggle-ref="demo_example_field_2">' +
+                '<label data-toggle-target for="label_id_5">An additional field</label>' + 
+                '<select id="label_id_5" data-toggle-target>' +
+                    '<option>---------</option>' +
+                '</select>' +
+            '</div>' +
+        '</form>',
         recursiveForm = 
-        '<div data-toggle-conditions="#demo_example_field_3, #demo_example_field_4, #demo_example_field_5"></div>' +
-        '<label for="label_id_7">First toggle</label>' +
-        '<select id="label_id_7" data-toggle-target>' + 
-            '<option>---------</option>' + 
-            '<option id="demo_example_field_3">foo</option>' + 
-        '</select>' + 
-        '<div data-toggle-next data-toggle-ref="demo_example_field_3" data-toggle-recursive>' + 
-            '<label data-toggle-target for="label_id_8">Second toggle</label>' + 
-            '<select id="label_id_8" data-toggle-target>' + 
+        '<form>' + 
+            '<div data-toggle-conditions="#demo_example_field_3, #demo_example_field_4, #demo_example_field_5"></div>' +
+            '<label for="label_id_7">First toggle</label>' +
+            '<select id="label_id_7" data-toggle-target>' + 
                 '<option>---------</option>' + 
-                '<option id="demo_example_field_4">bar</option>' + 
+                '<option id="demo_example_field_3">foo</option>' + 
             '</select>' + 
-        '</div>' + 
-        '<div data-toggle-next data-toggle-ref="demo_example_field_4" data-toggle-recursive>' + 
-            '<label data-toggle-target for="label_id_9">Third toggle</label>' + 
-            '<select id="label_id_9" data-toggle-target>' + 
-                '<option>---------</option>' + 
-                '<option id="demo_example_field_5">bar</option>' + 
-            '</select>' + 
-        '</div>' + 
-        '<div data-toggle-next data-toggle-ref="demo_example_field_5" data-toggle-recursive>' + 
-            '<p>Foo paragraph that belongs to the third toggle.</p>' + 
-        '</div>';
+            '<div data-toggle-next data-toggle-ref="demo_example_field_3" data-toggle-recursive>' + 
+                '<label data-toggle-target for="label_id_8">Second toggle</label>' + 
+                '<select id="label_id_8" data-toggle-target>' + 
+                    '<option>---------</option>' + 
+                    '<option id="demo_example_field_4">bar</option>' + 
+                '</select>' + 
+            '</div>' + 
+            '<div data-toggle-next data-toggle-ref="demo_example_field_4" data-toggle-recursive>' + 
+                '<label data-toggle-target for="label_id_9">Third toggle</label>' + 
+                '<select id="label_id_9" data-toggle-target>' + 
+                    '<option>---------</option>' + 
+                    '<option id="demo_example_field_5">bar</option>' + 
+                '</select>' + 
+            '</div>' + 
+            '<div data-toggle-next data-toggle-ref="demo_example_field_5" data-toggle-recursive>' + 
+                '<p>Foo paragraph that belongs to the third toggle.</p>' + 
+            '</div>' + 
+        '</form>';
 
 
     beforeEach(function() {
@@ -85,13 +91,14 @@ describe('toggle-fields', function() {
             // Add form markup
             $('body').append(defaultForm);
 
-            var targets = $('[data-toggle-target]');
+            var form = $('form'),
+                targets = $('[data-toggle-target]');
 
             targets.each(function() {
                 var target = $(this);
 
                 // Init plugin
-                toggleFields();
+                form.toggleFields();
 
                 // If the taret is a label 
                 if (target.is('label')) {
@@ -111,10 +118,11 @@ describe('toggle-fields', function() {
 
             var selectField = $('#demo_example_a_field_1'),
                 condition = $('#demo_example_a_field_1_option'),
-                targets = $('[data-toggle-target]');
+                targets = $('[data-toggle-target]'),
+                form = $('form');
 
             // Init plugin
-            toggleFields();
+            form.toggleFields();
 
             // Emulate selecting the option with the condition
             selectField
@@ -144,12 +152,13 @@ describe('toggle-fields', function() {
             $('body').append(defaultForm);
 
             var targets = $('[data-toggle-target]'),
-                nextFormRows = $('[data-toggle-next]');
+                nextFormRows = $('[data-toggle-next]'),
+                form = $('form');
 
             // Remove the targets
             targets.remove();
             // Init plugin
-            toggleFields();
+            form.toggleFields();
             // The container should be disabled instead
             expect(nextFormRows.hasClass('disabled')).toBe(true);
         });
@@ -163,25 +172,19 @@ describe('toggle-fields', function() {
 
             var condition = $('#demo_example_field_2'),
                 relatedRadio = $('#label_id_3'),
-                targets = $('[data-toggle-target]');
+                targets = $('[data-toggle-target]'),
+                form = $('form');
 
             // Init plugin
-            toggleFields();
-            
-            // Trigger the condition
-            condition.trigger('click');
-            targets.each(function() {
-                // The target should be enaled
-                expect($(this).hasClass('disabled')).toBe(false);
-            });
+            form.toggleFields();
 
-            // Then trigger the related radio field to emulate unselecting the condition
+            // Select the other radio button
             relatedRadio.trigger('click');
+            // For each target
             targets.each(function() {
                 // The target should be disabled
                 expect($(this).hasClass('disabled')).toBe(true);
             });
-
         });
     });
 
@@ -192,10 +195,11 @@ describe('toggle-fields', function() {
             $('body').append(checkboxForm);
 
             var condition = $('#demo_example_field_2'),
-                targets = $('[data-toggle-target]');
+                targets = $('[data-toggle-target]'),
+                form = $('form');
 
             // Init plugin
-            toggleFields();
+            form.toggleFields();
             // Trigger the condition
             condition.trigger('click');
             targets.each(function() {
@@ -215,10 +219,11 @@ describe('toggle-fields', function() {
                 condition2 = $('demo_example_field_4'),
                 condition3 = $('demo_example_field_5'),
                 condition2Targets = $('[data-toggle-ref="demo_example_field_3"] [data-toggle-target]'),
-                condition3Targets = $('[data-toggle-ref="demo_example_field_4"] [data-toggle-target]');
+                condition3Targets = $('[data-toggle-ref="demo_example_field_4"] [data-toggle-target]'),
+                form = $('form');
 
             // Init plugin
-            toggleFields();
+            form.toggleFields();
 
             // First condition
             condition1
@@ -247,10 +252,11 @@ describe('toggle-fields', function() {
                 condition2 = $('demo_example_field_4'),
                 condition3 = $('demo_example_field_5'),
                 condition2Targets = $('[data-toggle-ref="demo_example_field_3"] [data-toggle-target]'),
-                condition3Targets = $('[data-toggle-ref="demo_example_field_4"] [data-toggle-target]');
+                condition3Targets = $('[data-toggle-ref="demo_example_field_4"] [data-toggle-target]'),
+                form = $('form');
 
             // Init plugin
-            toggleFields();
+            form.toggleFields();
 
             // Enable first condition
             condition1
@@ -295,10 +301,11 @@ describe('toggle-fields', function() {
             var options = {
                     disabledClass: 'foo'
                 },
-                targets = $('[data-toggle-target]');
+                targets = $('[data-toggle-target]'),
+                form = $('form');
 
             // Init plugin
-            toggleFields(options);
+            form.toggleFields(options);
             // Each target
             targets.each(function() {
                 var target = $(this);
@@ -312,10 +319,11 @@ describe('toggle-fields', function() {
             var options = {
                     disabledAttr: 'disabled-attr'
                 },
-                target = $('select[data-toggle-target]');
+                target = $('select[data-toggle-target]'),
+                form = $('form');
 
             // Init plugin
-            toggleFields(options);
+            form.toggleFields(options);
 
             expect(typeof target.attr(options.disabledAttr) !== 'undefined').toBe(true);
         });
@@ -324,10 +332,11 @@ describe('toggle-fields', function() {
             var options = {
                     conditionIdentifier: 'condition-identifier'
                 },
-                condition = $('#demo_example_a_field_1_option');
+                condition = $('#demo_example_a_field_1_option'),
+                form = $('form');
 
             // Init plugin
-            toggleFields(options);
+            form.toggleFields(options);
 
             expect(typeof condition.attr(options.conditionIdentifier) !== 'undefined').toBe(true);
         });
@@ -337,7 +346,8 @@ describe('toggle-fields', function() {
                     conditionsIdentifier: 'conditions-identifier'
                 },
                 targets = $('[data-toggle-target]'),
-                conditions = $('[data-toggle-conditions]');
+                conditions = $('[data-toggle-conditions]'),
+                form = $('form');
 
             // Remove the normal conditions element
             conditions.remove();
@@ -345,7 +355,7 @@ describe('toggle-fields', function() {
             $('body').append('<div conditions-identifier="#demo_example_a_field_1_option"></div>');
 
             // Init plugin
-            toggleFields(options);
+            form.toggleFields(options);
 
             // Each target
             targets.each(function() {
@@ -361,12 +371,13 @@ describe('toggle-fields', function() {
                     helpTextIdentifier: 'help-text-identifier'
                 },
                 targetField = $('select[data-toggle-target]'),
-                helpText = '<p help-text-identifier data-toggle-target> Foo </p>';
+                helpText = '<p help-text-identifier data-toggle-target> Foo </p>',
+                form = $('form');
 
             // Add help text
             $(helpText).insertAfter(targetField);
             // Init plugin
-            toggleFields(options);
+            form.toggleFields(options);
             // Get help text again
             helpText = $('[' + options.helpTextIdentifier + ']');
 
@@ -380,7 +391,8 @@ describe('toggle-fields', function() {
                 },
                 originalRowsIdentifier = 'data-toggle-next',
                 originalRows = $('[' + originalRowsIdentifier + ']'),
-                targets = $('[data-toggle-target]');
+                targets = $('[data-toggle-target]'),
+                form = $('form');
 
             originalRows
                 // Remove original identifier 
@@ -392,7 +404,7 @@ describe('toggle-fields', function() {
             originalRows.before('<div></div>');
 
             // Init plugin
-            toggleFields(options);
+            form.toggleFields(options);
 
             // Each target
             targets.each(function() {
@@ -412,7 +424,8 @@ describe('toggle-fields', function() {
                     originalRowsIdentifier = 'data-toggle-next',
                     originalRefIdentifier = 'data-toggle-ref',
                     originalRows = $('[' + originalRowsIdentifier + ']'),
-                    targets = $('[data-toggle-target]');
+                    targets = $('[data-toggle-target]'),
+                    form = $('form');
 
                 originalRows
                     // Remove original identifiers
@@ -420,7 +433,7 @@ describe('toggle-fields', function() {
                     .removeAttr(originalRefIdentifier);
 
                 // Init plugin
-                toggleFields(options);
+                form.toggleFields(options);
 
                 // Each target
                 targets.each(function() {
@@ -439,7 +452,8 @@ describe('toggle-fields', function() {
                 originalNextRowIdentifier = 'data-toggle-ref',
                 originalNextRow = $('[' + originalNextRowIdentifier + ']'),
                 originalNextRowValue = originalNextRow.attr(originalNextRowIdentifier),
-                targets = $('[data-toggle-target]');
+                targets = $('[data-toggle-target]'),
+                form = $('form');
 
             originalNextRow
                 // Remove original identifier 
@@ -448,7 +462,7 @@ describe('toggle-fields', function() {
                 .attr(options.nextRowReferenceIdentifier, originalNextRowValue);
 
             // Init plugin
-            toggleFields(options);
+            form.toggleFields(options);
 
             // Each target
             targets.each(function() {
@@ -465,7 +479,8 @@ describe('toggle-fields', function() {
                 },
                 originalTargetIdentifier = 'data-toggle-target',
                 originalTargets = $('[' + originalTargetIdentifier + ']'),
-                newTargets = $('[' + options.targetIdentifier + ']');
+                newTargets = $('[' + options.targetIdentifier + ']'),
+                form = $('form');
 
             originalTargets
                 // Remove original identifier
@@ -474,7 +489,7 @@ describe('toggle-fields', function() {
                 .attr(options.targetIdentifier, '');
 
             // Init plugin
-            toggleFields(options);
+            form.toggleFields(options);
 
             // Each target
             newTargets.each(function() {
@@ -489,10 +504,11 @@ describe('toggle-fields', function() {
             var options = {
                     toggleClass: 'toggle-class'
                 },
-                container = $('[data-toggle-ref]');
+                container = $('[data-toggle-ref]'),
+                form = $('form');
 
                 // Init plugin
-                toggleFields(options);
+                form.toggleFields(options);
 
                 // The container should have the new toggle class
                 expect(container.hasClass(options.toggleClass)).toBe(true);
@@ -503,10 +519,11 @@ describe('toggle-fields', function() {
                     initCallback: function() {
                         $('body').addClass('foo');
                     }
-                };
+                },
+                form = $('form');
 
             // Init plugin
-            toggleFields(options);
+            form.toggleFields(options);
             // The container should have the new toggle class
             expect($('body').hasClass('foo')).toBe(true);
         });
@@ -516,10 +533,11 @@ describe('toggle-fields', function() {
                     toggleOnCallback: function() {
                         $('body').addClass('foo');
                     }
-                };
+                },
+                form = $('form');
 
             // Init plugin
-            toggleFields(options);
+            form.toggleFields(options);
             // The container should have the new toggle class
             expect($('body').hasClass('foo')).toBe(true);
         });
@@ -529,10 +547,11 @@ describe('toggle-fields', function() {
                     toggleOffCallback: function() {
                         $('body').addClass('foo');
                     }
-                };
+                },
+                form = $('form');
 
             // Init plugin
-            toggleFields(options);
+            form.toggleFields(options);
             // The container should have the new toggle class
             expect($('body').hasClass('foo')).toBe(true);
         });
