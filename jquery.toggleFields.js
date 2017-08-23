@@ -1,6 +1,6 @@
 /*
-*  jquery.pardotA11y.js
-*  Adding accessibility to Pardot forms
+*  jquery.toggleFields.js
+*  Providing the ability to show and hide form fields
 *
 *  Made by Nomensa
 *  Under MIT License
@@ -115,6 +115,7 @@
         applyToggle: function(self, condition, targets) {
             /*
              * Handles the disabled and enabled states
+             * @param {object} Plugin instance
              * @param {jQueryObject} condition - The trigger for the condition
              * @param {jQueryObject} targets - The form fields to be toggled
              */
@@ -170,6 +171,7 @@
         recursive: function (self, container, condition) {
             /*
              * To re-toggle recursive conditions if they have already been met
+             * @param {object} Plugin instance
              * @param {jQueryObject} container - The containing element of the targets
              * @param {jQueryObject} condition - The trigger for the condition before recursion
              */
