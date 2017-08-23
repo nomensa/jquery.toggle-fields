@@ -1,6 +1,6 @@
 {
   "name": "jquery-toggle-fields",
-  "version": "2.0.0",
+  "version": "2.2",
   "description": "Adds form conditions to show and hide form fields.",
   "author": "Nomensa <tech@nomensa.com>",
   "repository": {
@@ -12,6 +12,8 @@
     "grunt": "0.4.2",
     "grunt-karma": "~0.8.0",
     "karma": "~0.12.0",
+    "grunt-contrib-jshint": "~1.1.0",
+    "grunt-jscs": "~3.0.1",
     "karma-jasmine": "~0.2.2",
     "karma-phantomjs-launcher": "~0.1.2",
     "karma-coverage": "~0.1.5",
