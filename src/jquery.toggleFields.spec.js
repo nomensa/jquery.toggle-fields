@@ -73,6 +73,24 @@ describe('toggle-fields', function() {
             '<div data-toggle-next data-toggle-ref="demo_example_field_5" data-toggle-recursive>' + 
                 '<p>Foo paragraph that belongs to the third toggle.</p>' + 
             '</div>' + 
+        '</form>',
+        helpTextForm =
+        '<div data-toggle-conditions="#demo_example_a_field_1_option"></div>' + 
+        '<form>' +
+            '<div>' +
+                '<label for="demo_example_a_field_1">Select an option</label>' +
+                '<select id="demo_example_a_field_1">' +
+                    '<option>---------</option>' +
+                    '<option id="demo_example_a_field_1_option">foo</option>' +
+                '</select>' +
+            '</div>' +
+            '<div data-toggle-next data-toggle-ref="demo_example_a_field_1_option">' +
+                '<label data-toggle-target for="demo_example_a_field_2">An additional field</label>' +
+                '<select aria-describedby="instructions_id_1" id="demo_example_a_field_2" data-toggle-target>' +
+                    '<option>Foo option</option>' +
+                '</select>' +
+                '<p id="instructions_id_1" class="helptext-foo">For example: name@example.com</p>' +
+            '</div>' +
         '</form>';
 
 
@@ -554,6 +572,65 @@ describe('toggle-fields', function() {
             form.toggleFields(options);
             // The container should have the new toggle class
             expect($('body').hasClass('foo')).toBe(true);
+        });
+    });
+
+    describe('Destroy method:', function() {
+
+        beforeEach(function() {
+            $('body')
+                // Clean the DOM
+                .empty()
+                // Add form markup
+                .append(helpTextForm);
+        });
+
+        it('Should remove all traces of the plugin', function() {
+            var options = {
+                    destroyCallback: function() {
+                        $('body').addClass('foo');
+                    },
+                    toggleClass: 'toggleclass-foo',
+                    helpTextIdentifier: 'helptext-foo'
+                },
+                form = $('form'),
+                targets,
+                targetContainer,
+                helpText;
+
+            // Init plugin
+            form.toggleFields(options);
+
+            // Get all targets
+            targets = $('[data-toggle-target]');
+            // Get all target containers
+            targetContainer = $('[data-toggle-ref]');
+            // Get all help text
+            helpText = $('.' + options.helpTextIdentifier);
+
+            // Call the destroy method
+            form.data('plugin_toggleFields').destroy();
+
+            // It should run a callback destroy function before it has been destroyed
+            expect($('body').hasClass('foo')).toBe(true);
+
+            // For each target
+            targets.each(function() {
+                var target = $(this);
+
+                // It should remove the disabled attribute on targets
+                expect(typeof target.attr('disabled') === 'undefined').toBe(true);
+                // It should remove the disabled class on targets
+                expect(target.hasClass('disabled')).toBe(false);
+            });
+
+            // It should remove the disabled class on help text
+            expect(helpText.hasClass(options.toggleClass)).toBe(false);
+
+            // It should remove the toggle class on the target container
+            expect(targetContainer.hasClass(options.toggleClass)).toBe(false);
+            // It should remove its data bindings
+            expect(typeof form.data('plugin_toggleFields') === 'undefined').toBe(true);
         });
     });
 });
