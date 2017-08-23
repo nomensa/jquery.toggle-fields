@@ -11,7 +11,7 @@
         <link rel="stylesheet" media="screen" href="gh-pages/css/demo.css">
     </head>
 
-    <body data-toggle-conditions="#demo_example_field_1, #demo_example_field_2, #demo_example_field_3, #demo_example_field_4, #demo_example_field_5, #demo_example_field_6, #demo_example_field_7, #demo_example_field_8">
+    <body>
         <div class="header">
             <p><a href="http://nomensa.com?plugin"><img src="gh-pages/img/nomensa-logo.png" alt="Nomensa humanising technology" width="135" heaight="38"></a></p>
         </div>
@@ -31,8 +31,8 @@
             <p>Toggling a single field</p>
             <h4 aria-describedby="example-heading--a">Markup</h4>
 <pre class="prettyprint">
-&lt;body data-toggle-conditions="#demo_example_field_1"&gt;
 &#x3C;form&#x3E;
+    &#x3C;i aria-hidden data-toggle-conditions=&#x22;#demo_example_field_1&#x22;&#x3E;&#x3C;/i&#x3E;
     &#x3C;label for=&#x22;label_id_1&#x22;&#x3E;Select an option&#x3C;/label&#x3E;
     &#x3C;select id=&#x22;label_id_1&#x22; data-toggle-target&#x3E;
         &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
@@ -50,7 +50,8 @@
 &#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--a">Rendered</h4>
-            <form>
+            <form id="exampleA">
+                <i aria-hidden data-toggle-conditions="#demo_example_field_1"></i>
                 <label for="label_id_1">Select an option</label>
                 <select id="label_id_1" data-toggle-target>
                     <option>---------</option>
@@ -71,6 +72,7 @@
 <pre class="prettyprint">
 &lt;body data-toggle-conditions="#demo_example_field_2"&gt;
 &#x3C;form&#x3E;
+    &#x3C;i aria-hidden data-toggle-conditions=&#x22;#demo_example_field_2&#x22;&#x3E;&#x3C;/i&#x3E;
     &#x3C;label for=&#x22;label_id_3&#x22;&#x3E;&#x3C;input id=&#x22;label_id_3&#x22; checked=&#x22;checked&#x22; name=&#x22;fieldset_1&#x22; type=&#x22;radio&#x22;&#x3E; No&#x3C;/label&#x3E;
     &#x3C;label for=&#x22;demo_example_field_2&#x22;&#x3E;&#x3C;input id=&#x22;demo_example_field_2&#x22; name=&#x22;fieldset_1&#x22; type=&#x22;radio&#x22;&#x3E; Yes&#x3C;/label&#x3E;
     &#x3C;div data-toggle-next data-toggle-ref=&#x22;demo_example_field_2&#x22;&#x3E;
@@ -89,7 +91,8 @@
 &#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--b">Rendered</h4>
-            <form>
+            <form id="exampleB">
+                <i aria-hidden data-toggle-conditions="#demo_example_field_2"></i>
                 <label for="label_id_3"><input id="label_id_3" checked="checked" name="fieldset_1" type="radio"> No</label>
                 <label for="demo_example_field_2"><input id="demo_example_field_2" name="fieldset_1" type="radio"> Yes</label>
                 <div data-toggle-next data-toggle-ref="demo_example_field_2">
@@ -109,8 +112,8 @@
             <p>Recursive toggle.</p>
             <h4 aria-describedby="example-heading--c">Markup</h4>
 <pre class="prettyprint">
-&lt;body data-toggle-conditions="#demo_example_field_3, #demo_example_field_4, #demo_example_field_5"&gt;
 &#x3C;form&#x3E;
+    &#x3C;i aria-hidden data-toggle-conditions=&#x22;#demo_example_field_3, #demo_example_field_4, #demo_example_field_5&#x22;&#x3E;&#x3C;/i&#x3E;
     &#x3C;label for=&#x22;label_id_7&#x22;&#x3E;First toggle&#x3C;/label&#x3E;
     &#x3C;select id=&#x22;label_id_7&#x22; data-toggle-target&#x3E;
         &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
@@ -139,7 +142,8 @@
 &#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--c">Rendered</h4>
-            <form>
+            <form id="exampleC">
+                <i aria-hidden data-toggle-conditions="#demo_example_field_3, #demo_example_field_4, #demo_example_field_5"></i>
                 <label for="label_id_7">First toggle</label>
                 <select id="label_id_7" data-toggle-target>
                     <option>---------</option>
@@ -169,8 +173,8 @@
             <p>Checkbox example</p>
             <h4 aria-describedby="example-heading--d">Markup</h4>
 <pre class="prettyprint">
-&lt;body data-toggle-conditions="#demo_example_field_6"&gt;
 &#x3C;form&#x3E;
+    &#x3C;i aria-hidden data-toggle-conditions=&#x22;#demo_example_field_6&#x22;&#x3E;&#x3C;/i&#x3E;
     &#x3C;label for=&#x22;demo_example_field_6&#x22;&#x3E;
         &#x3C;input id=&#x22;demo_example_field_6&#x22; checked type=&#x22;checkbox&#x22;&#x3E; No
     &#x3C;/label&#x3E;
@@ -186,7 +190,8 @@
 &#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--d">Rendered</h4>
-            <form>
+            <form id="exampleD">
+                <i aria-hidden data-toggle-conditions="#demo_example_field_6"></i>
                 <label for="demo_example_field_6">
                     <input id="demo_example_field_6" checked type="checkbox"> No
                 </label>
@@ -203,8 +208,8 @@
             <p>Field with help text example</p>
             <h4 aria-describedby="example-heading--e">Markup</h4>
 <pre class="prettyprint">
-&lt;body data-toggle-conditions="#demo_example_field_7"&gt;
 &#x3C;form&#x3E;
+    &#x3C;i aria-hidden data-toggle-conditions=&#x22;#demo_example_field_7&#x22;&#x3E;&#x3C;/i&#x3E;
     &#x3C;label for=&#x22;label_id_10&#x22;&#x3E;Select an option&#x3C;/label&#x3E;
     &#x3C;select id=&#x22;label_id_10&#x22; data-toggle-target&#x3E;
         &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
@@ -221,7 +226,8 @@
 &#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--e">Rendered</h4>
-            <form>
+            <form id="exampleE">
+                <i aria-hidden data-toggle-conditions="#demo_example_field_7"></i>
                 <label for="label_id_10">Select an option</label>
                 <select id="label_id_10" data-toggle-target>
                     <option>---------</option>
@@ -239,8 +245,8 @@
             <p>Destroy method</p>
             <h4 aria-describedby="example-heading--f">Markup</h4>
 <pre class="prettyprint">
-&lt;body data-toggle-conditions="#demo_example_field_8"&gt;
 &#x3C;form id=&#x22;destroyMethod&#x22;&#x3E;
+    &#x3C;i aria-hidden data-toggle-conditions=&#x22;#demo_example_field_8&#x22;&#x3E;&#x3C;/i&#x3E;
     &#x3C;label for=&#x22;label_id_11&#x22;&#x3E;Select an option&#x3C;/label&#x3E;
     &#x3C;select id=&#x22;label_id_11&#x22; data-toggle-target&#x3E;
         &#x3C;option&#x3E;---------&#x3C;/option&#x3E;
@@ -263,7 +269,8 @@
 &#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--f">Rendered</h4>
-            <form id="destroyMethod">
+            <form id="exampleF">
+                <i aria-hidden data-toggle-conditions="#demo_example_field_8"></i>
                 <label for="label_id_11">Select an option</label>
                 <select id="label_id_11" data-toggle-target>
                     <option>---------</option>
@@ -288,7 +295,7 @@
             $('form').toggleFields();
 
             // Example F: Run the destroy method 
-            $('form#destroyMethod').data('plugin_toggleFields').destroy();
+            $('#exampleF').data('plugin_toggleFields').destroy();
         </script>
     </body>
 </html>

@@ -2,9 +2,9 @@
 
 describe('toggle-fields', function() {
 
-    var defaultForm =
-        '<div data-toggle-conditions="#demo_example_a_field_1_option"></div>' + 
+    var defaultForm = 
         '<form>' +
+            '<div data-toggle-conditions="#demo_example_a_field_1_option"></div>' +
             '<div>' +
                 '<label for="demo_example_a_field_1">Select an option</label>' +
                 '<select id="demo_example_a_field_1">' +
@@ -75,8 +75,8 @@ describe('toggle-fields', function() {
             '</div>' + 
         '</form>',
         helpTextForm =
-        '<div data-toggle-conditions="#demo_example_a_field_1_option"></div>' + 
         '<form>' +
+            '<div data-toggle-conditions="#demo_example_a_field_1_option"></div>' + 
             '<div>' +
                 '<label for="demo_example_a_field_1">Select an option</label>' +
                 '<select id="demo_example_a_field_1">' +
@@ -112,11 +112,11 @@ describe('toggle-fields', function() {
             var form = $('form'),
                 targets = $('[data-toggle-target]');
 
+            // Init plugin
+            form.toggleFields();
+
             targets.each(function() {
                 var target = $(this);
-
-                // Init plugin
-                form.toggleFields();
 
                 // If the taret is a label 
                 if (target.is('label')) {
@@ -370,7 +370,7 @@ describe('toggle-fields', function() {
             // Remove the normal conditions element
             conditions.remove();
             // Add new conditions element with different identifier
-            $('body').append('<div conditions-identifier="#demo_example_a_field_1_option"></div>');
+            form.append('<div conditions-identifier="#demo_example_a_field_1_option"></div>');
 
             // Init plugin
             form.toggleFields(options);
@@ -566,10 +566,20 @@ describe('toggle-fields', function() {
                         $('body').addClass('foo');
                     }
                 },
+                form = $('form'),
+                selectField = $('#demo_example_a_field_1'),
+                condition = $('#demo_example_a_field_1_option'),
+                targets = $('[data-toggle-target]'),
                 form = $('form');
 
             // Init plugin
             form.toggleFields(options);
+
+            // Emulate selecting the option with the condition
+            selectField
+                .val('---------')
+                .change();
+
             // The container should have the new toggle class
             expect($('body').hasClass('foo')).toBe(true);
         });

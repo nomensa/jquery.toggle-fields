@@ -36,6 +36,8 @@
         this.settings = $.extend({}, defaults, options);
         // Store the plugin name
         this.name = pluginName;
+        // Store the fields watched for changes
+        this.fieldsToWatch = [];
 
         // Initialise plugin
         this.init();
@@ -46,20 +48,20 @@
 
         init: function() {
             var self = this,
-                conditions = $('[' + self.settings.conditionsIdentifier + ']');
+                conditions = self.element.find('[' + self.settings.conditionsIdentifier + ']');
 
             if (conditions.length !== 0) {
                 var conditionValues = conditions.attr(self.settings.conditionsIdentifier),
-                    conditionTargets = $(conditionValues);
+                    conditionTargets = self.element.find(conditionValues);
 
                 // Init callback
                 self.settings.initCallback();
 
                 // For each condition
                 conditionTargets.each(function() {
-                    var condition = $(this),
+                    var condition = self.element.find(this),
                         fieldToWatch,
-                        nextFormRows = $('[' + self.settings.nextFormRowsIdentifier + ']'),
+                        nextFormRows = self.element.find('[' + self.settings.nextFormRowsIdentifier + ']'),
                         radioNameIdentifier,
                         targets,
                         wrapper = condition.parents('form');
@@ -105,6 +107,9 @@
                         fieldToWatch = condition;
                     }
 
+                    // Store the fields to watch for later
+                    self.fieldsToWatch.push(fieldToWatch);
+
                     // Target the on change
                     fieldToWatch.on('change', function() {
                         // Update toggle
@@ -122,8 +127,8 @@
              */
             var conditionContainer;
 
-            condition = $(condition);
-            targets = $(targets);
+            condition = self.element.find(condition);
+            targets = self.element.find(targets);
 
             // Initially disable all targets
             targets.each(function() {
@@ -201,9 +206,10 @@
         },
         destroy: function() {
             var self = this,
-                targets = $('[' + self.settings.targetIdentifier + ']'),
-                targetContainers = $('[' + self.settings.nextFormRowsIdentifier + ']'),
-                helpText = $('.' + self.settings.helpTextIdentifier);
+                targets = self.element.find('[' + self.settings.targetIdentifier + ']'),
+                targetContainers = self.element.find('[' + self.settings.nextFormRowsIdentifier + ']'),
+                helpText = self.element.find('.' + self.settings.helpTextIdentifier),
+                boundFields = self.fieldsToWatch;
 
             // Run the destroy callback
             self.settings.destroyCallback();
@@ -220,8 +226,13 @@
             // Remove the toggle class from the target containers
             targetContainers.removeClass(self.settings.toggleClass);
 
-            // Remove the data bindings
+            // Remove the data binding on the plugin element
             self.element.removeData('plugin_toggleFields');
+            // Remove the event handlers on the fields to watch
+            $.each(boundFields, function() {
+                var field = $(this);
+                field.off('change');
+            });
         }
     });
 
