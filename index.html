@@ -22,7 +22,8 @@
             <h2> Examples </h2>
             <p>To initialise the plugin</p>
 <pre>
-    <code data-language="javascript">toggleFields();
+    <code data-language="javascript">
+        $('form').toggleFields();
     </code>
 </pre>
 
@@ -194,7 +195,7 @@
     &#x3C;/select&#x3E;
     &#x3C;div data-toggle-next data-toggle-ref=&#x22;demo_example_field_7&#x22;&#x3E;
         &#x3C;label data-toggle-target for=&#x22;label_id_11&#x22;&#x3E;Email address&#x3C;/label&#x3E;
-        &#x3C;input aria-describedby=&#x22;instructions_id_1&#x22; id=&#x22;label_id_11&#x22; type=&#x22;text&#x22; /&#x3E;
+        &#x3C;input data-toggle-target aria-describedby=&#x22;instructions_id_1&#x22; id=&#x22;label_id_11&#x22; type=&#x22;text&#x22; /&#x3E;
         &#x3C;p id=&#x22;instructions_id_1&#x22; class=&#x22;form-row__instructions&#x22;&#x3E;For example: name@example.com&#x3C;/p&#x3E;
     &#x3C;/div&#x3E;
 </pre>
@@ -207,7 +208,7 @@
                 </select>
                 <div data-toggle-next data-toggle-ref="demo_example_field_7">
                     <label data-toggle-target for="label_id_11">Email address</label>
-                    <input aria-describedby="instructions_id_1" id="label_id_11" type="text" />
+                    <input data-toggle-target aria-describedby="instructions_id_1" id="label_id_11" type="text" />
                     <p id="instructions_id_1" class="form-row__instructions">For example: name@example.com</p>
                 </div>
             </form>
@@ -222,7 +223,7 @@
         <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
         <script src="jquery.toggleFields.js"></script>
         <script>
-            toggleFields();
+            $('form').toggleFields();
         </script>
     </body>
 </html>
