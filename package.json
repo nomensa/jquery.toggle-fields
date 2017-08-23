@@ -1,6 +1,6 @@
 {
   "name": "jquery-toggle-fields",
-  "version": "2.3.0",
+  "version": "3.4.0",
   "description": "Adds form conditions to show and hide form fields.",
   "author": "Nomensa <tech@nomensa.com>",
   "repository": {
