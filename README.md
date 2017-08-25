@@ -53,8 +53,8 @@ Then it's just a case of including the following scripts on your page, best at t
 |--- |--- |--- |
 |conditionIdentifier|'data-toggle-condition'|(attribute) Used to identify the element with the condition|
 |conditionsIdentifier|'data-toggle-conditions'|(attribute) Used to identify all conditions in the DOM|
-|disabledClass|'disabled'|The class added for the disabled state|
-|disabledAttr|'disabled'|The disabled attribte added on form elements|
+|disabledClass|'disabled'|(class) The class added for the disabled state|
+|disabledAttr|'disabled'|(attribute) The disabled attribte added on form elements|
 |helpTextIdentifier|'form-row__instructions'|(class) Used to identify any additional text related to the targets|
 |nextFormRowsIdentifier|'data-toggle-next'|(attribute)Used to identify the wrapper for the targets|
 |nextRowReferenceIdentifier|'data-toggle-ref'|(attribute)Used to identify the condition in which the wrapper belongs to|
