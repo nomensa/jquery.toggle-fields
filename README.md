@@ -1,7 +1,10 @@
 # jQuery Toggle fields
 
-> Adds form conditions to show and hide form fields.
+> Adds logic to disable and enable form fields.
 
+The plugin simply:
+- Adds/ removes a disabled class to textual elements;
+- Adds/ removes a disabled class & disabled attribute to input elements.
 
 ## Usage
 
@@ -45,6 +48,7 @@ Then it's just a case of including the following scripts on your page, best at t
 ```
 
 ### Options
+
 |Option|Default|Explanation|
 |--- |--- |--- |
 |conditionIdentifier|'data-toggle-condition'|(attribute) Used to identify the element with the condition|

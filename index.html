@@ -298,11 +298,20 @@
             // Example F: Button demo
             $('#exampleFTrigger').on('click', function() {
                 var form = $('#exampleF'),
-                    plugin = form.data('plugin_toggleFields');
+                    plugin = form.data('plugin_toggleFields'),
+                    button = $(this);
 
                 // If the plugin has been initialised
                 if (typeof plugin !== 'undefined') {
                     plugin.destroy();
+                    // Change the text in the button
+                    button.html('Init the rendered form (demo)');
+                }
+                else {
+                    // Otherwise init the plugin
+                    form.toggleFields();
+                    // Change the text in the button
+                    button.html('Destroy the rendered form (demo)');
                 }
             });
             
