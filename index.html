@@ -269,6 +269,7 @@
 &#x3C;/script&#x3E;
 </pre>
             <h4 aria-describedby="example-heading--f">Rendered</h4>
+            <button id="exampleFTrigger">Destroy the rendered form (demo)</button>
             <form id="exampleF">
                 <i aria-hidden data-toggle-conditions="#demo_example_field_8"></i>
                 <label for="label_id_11">Select an option</label>
@@ -294,8 +295,17 @@
         <script>
             $('form').toggleFields();
 
-            // Example F: Run the destroy method 
-            $('#exampleF').data('plugin_toggleFields').destroy();
+            // Example F: Button demo
+            $('#exampleFTrigger').on('click', function() {
+                var form = $('#exampleF'),
+                    plugin = form.data('plugin_toggleFields');
+
+                // If the plugin has been initialised
+                if (typeof plugin !== 'undefined') {
+                    plugin.destroy();
+                }
+            });
+            
         </script>
     </body>
 </html>
