@@ -142,6 +142,14 @@ The Jasmine file is `jquery.toggleFields.spec.js`.
 The test coverage is then compiled in the `coverage` folder.
 Inside the `coverage` folder, open the `PhantomJS 1.9.8 (Linux 0.0.0)` folder to see the latest test coverage.
 
+## Browser support
+Below is a list of browsers the plugin supports, however you may find it works in older version of browsers.
+* IE v.7+;
+* FF latest;
+* Chrome latest;
+* Opera latest;
+* Safari latest.
+
 ## Todo
 No tasks currently in our todo list.
 
