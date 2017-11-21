@@ -31,7 +31,7 @@ Then it's just a case of including the following scripts on your page, best at t
 #### DOM requirement examples
 ##### data-toggle-conditions
 ```html
-    <body data-toggle-conditions="#field-1-with-condition, #field-2-with-condition">
+    <div data-toggle-conditions="#field-1-with-condition, #field-2-with-condition">
 ```
 ##### data-toggle-target
 ```html
@@ -54,11 +54,11 @@ Then it's just a case of including the following scripts on your page, best at t
 |conditionIdentifier|'data-toggle-condition'|(attribute) Used to identify the element with the condition|
 |conditionsIdentifier|'data-toggle-conditions'|(attribute) Used to identify all conditions in the DOM|
 |disabledClass|'disabled'|(class) The class added for the disabled state|
-|disabledAttr|'disabled'|(attribute) The disabled attribte added on form elements|
+|disabledAttr|'disabled'|(attribute) The disabled attribute added on form elements|
 |helpTextIdentifier|'form-row__instructions'|(class) Used to identify any additional text related to the targets|
-|nextFormRowsIdentifier|'data-toggle-next'|(attribute)Used to identify the wrapper for the targets|
-|nextRowReferenceIdentifier|'data-toggle-ref'|(attribute)Used to identify the condition in which the wrapper belongs to|
-|targetIdentifier|'data-toggle-target'|(attribute)Used to identify the targets for the conditions|
+|nextFormRowsIdentifier|'data-toggle-next'|(attribute) Used to identify the wrapper for the targets|
+|nextRowReferenceIdentifier|'data-toggle-ref'|(attribute) Used to identify the condition in which the wrapper belongs to|
+|targetIdentifier|'data-toggle-target'|(attribute) Used to identify the targets for the conditions|
 |toggleClass|'js-toggleFields--on'|(class) Identifies whether the toggle has applied'
 |toggleClass|js-toggleFields--on|(class) Represents toggled state, used on the target container|
 |initCallback|function(){}|Callback when initialised|
@@ -109,8 +109,8 @@ If you have NVM installed, make sure to use the correct node version:
 ```bash
 $ nvm use 0.10
 ```
+Next install the plugin's node packages:
 
-Install the global node.js packages:
 ```bash
 $ npm install
 ```
@@ -125,12 +125,11 @@ $ npm install -g grunt-cli
 # => if you have used grunt before you probably have this (this can be run from any directory)
 ```
 
-Next install the plugin's node packages:
-
+## Running
+We use `http-server` to serve the demo page:
 ```bash
-$ npm install
+$ http-server
 ```
-
 ## Testing
 We use Karma to build the test suites, which in turn uses Jasmine.
 
