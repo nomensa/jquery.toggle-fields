@@ -8,9 +8,10 @@ The plugin simply:
 
 ## Usage
 
-To get started you can:
+To get started you can clone the repository or install on NPM.
 
  - Clone the repo: `git clone https://github.com/nomensa/jquery.toggle-fields.git`
+ - NPM install: `npm i jquery-toggle-fields`
 
 Then it's just a case of including the following scripts on your page, best at the bottom:
 
